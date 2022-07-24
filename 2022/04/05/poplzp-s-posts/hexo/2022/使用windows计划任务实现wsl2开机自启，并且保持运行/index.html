@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>使用windows计划任务实现wsl2开机自启，并且保持运行 |  POPLZP 的博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://fastly.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="POPLZP 的博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-poplzp-s-posts/hexo/2022/使用windows计划任务实现wsl2开机自启，并且保持运行"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/" class="article-date">
+  <time datetime="2022-04-05T21:52:44.000Z" itemprop="datePublished">2022-04-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl2/">wsl2</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">644</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry " 
+      
+      itemprop="articleBody">
+       
+  <h1 id="使用windows计划任务实现wsl2开机自启，并且保持运行"><a href="#使用windows计划任务实现wsl2开机自启，并且保持运行" class="headerlink" title="使用windows计划任务实现wsl2开机自启，并且保持运行"></a>使用windows计划任务实现wsl2开机自启，并且保持运行</h1><p>wsl2启动速度比wsl1慢了很多，因此我过去一直都是使用wsl1，但是wsl1对docker的支持不太好，只有旧版能正常运行，参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/20ebdbf68744">WSL 中 Docker 使用总结 - 简书 (jianshu.com)</a> ，wsl2速度慢准确来说应该是启动速度慢，wsl中的发行版在一段时间不使用后就会停止，再进入wsl就会有一个启动过程，这里wsl2比wsl1要慢很多。</p>
+<span id="more"></span>
+
+<p>知道了导致wsl2速度慢的原因了，怎么解决呢？</p>
+<p>首先，想到的是让wsl2开机运行，这样也能减少第一次启动花费的时间，实现开机运行程序的一个比较好的方法就是windows计划任务，直接启动wsl是不行的，会弹出来一个终端窗口，最小化也还是在任务栏里，这样和开机手动启动一个终端进去wsl2然后最小化不久没区别了？解决这个问题，powershell是个很好的答案，我推荐最新的powershell7，速度更快，功能更强大。powershell有一个参数，可以设置窗口模式，其中Hidden就是隐藏窗口执行，并且不会在任务栏显示，相当于后台执行。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/0bda0efa97305dc9d16225d34576a3f4-image-20220405220745353.png" alt="image-20220405220745353"></p>
+<p>有了这些，我们就可以编写计划任务 了</p>
+<p>右键此电脑，点击管理，选择计划任务，然后点击创建任务</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/cf363989523d356be57e7fa2283a63ca-image-20220405221107306.png" alt="image-20220405221107306"></p>
+<p><strong>常规</strong> 设置如下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/507d1d8e283d38a23e02624a9d5a95c0-image-20220405221201513.png" alt="image-20220405221201513"></p>
+<p><strong>触发器</strong> 新建一个登录时的触发器</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/f59ed85544f0db785d82c21318672186-image-20220405221259648.png" alt="image-20220405221259648"></p>
+<p><strong>操作</strong> 新建一个启动程序的操作，程序填<code>pwsh.exe</code>（没有安装powershell7的话填powershell.exe），参数填</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">-WindowStyle</span> <span class="keyword">Hidden</span> <span class="literal">-Command</span> <span class="string">&quot;while(1)&#123;wsl -d Distrod-Ubuntu -e /opt/distrod/alias/bin/bash&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/db492c61bcfc685c61f8b47817101aa0-image-20220405221347192.png" alt="image-20220405221347192"></p>
+<p>其中Distrod-Ubuntu改为你想要开机自启并保持运行的wsl容器，如果你安装的不是带systemd的distrod，-e后面的内容则改为<code>/usr/bin/bash</code> </p>
+<p><em>参考文章 <a href="/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/">WSL2下使用systemd的最佳方案 </a>了解 wsl-distrod</em></p>
+<p>如果需要wsl2开机自动挂载vhd虚拟硬盘文件，首先要安装wsl preview - <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r">Get Windows Subsystem for Linux Preview - Microsoft Store</a> ，该功能只有wsl preview支持，然后将参数设置为</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">-WindowStyle</span> <span class="keyword">Hidden</span> <span class="literal">-Command</span> <span class="string">&quot;wsl --shutdown; while(1)&#123;wsl --mount --vhd D:\WSL\DISKS\disk-128g-01.vhdx --bare; wsl -d Distrod-Ubuntu -e /opt/distrod/alias/bin/bash&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中vhd文件路径和wsl容器名称要改为你自己的</p>
+<p><strong>条件</strong> 把这里的勾都去掉</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/37c245c620b26dadd67c52b3baeec95e-image-20220405222115677.png" alt="image-20220405222115677"></p>
+<p>其他的设置就可以保持默认，点击确定保存后，wsl2就可以实现开机自启并保持运行了</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://poplzp.github.io/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BF%AE%E6%94%B9%20WSL2%20%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%8D%E7%BD%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            修改 WSL2 容器的位置
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0windows%E4%B8%BB%E6%9C%BA%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEWSL2%E4%B8%ADdocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="https://fastly.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "gpuloDtfNelWHEr1DfSGk6nt-MdYXbMMI",
+    app_key: "eROO8FxHUyr1FjtmJMvkAm6G",
+    path: window.location.pathname,
+    avatar: "robohash",
+    placeholder: "昵称输入QQ号可自动填充头像、昵称和邮箱；填写邮箱可在被回复时收到邮件提醒",
+    serverURLs: "https://gpulodtf.api.lncldglobal.com",
+    enableQQ: "true",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+  $("#vcomments").bind("DOMNodeInserted", (e)=>{
+    let o = $(e.target).children("img[class='vimg']");
+    o.attr("src")?o.attr("src", o.attr("src").replace("gravatar.loli.net", "sdn.geekzu.org")):{};    
+  })
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+
+  .vheader .vinput {
+    border-bottom-style: solid!important;
+  }
+
+  .vinput:focus {
+    border-bottom-color: #ccc!important;
+  }
+
+  #vcomments p, #vcomments input {
+    color: #403e3e;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2022
+        <i class="ri-heart-fill heart_icon"></i> POPLZP
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://v1.cnzz.com/z_stat.php?id=1280598664&amp;web_id=1280598664'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://avatars.githubusercontent.com/u/59827368" alt="POPLZP 的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/1999/10/11/poplzp-s-posts/README">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://poplzp.gitee.io">镜像站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2685%202.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2686%202.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://fastly.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      $("figure").wrap('<div class="code-wrap"></div>');
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>python仅使用time库实现多个判断两个时间戳之间关系的操作</title>
+    <url>/2021/06/05/csdn/python%E4%BB%85%E4%BD%BF%E7%94%A8time%E5%BA%93%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AA%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E6%97%B6%E9%97%B4%E6%88%B3%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h4 id="python仅使用time库实现多个判断两个时间戳之间关系的操作"><a href="#python仅使用time库实现多个判断两个时间戳之间关系的操作" class="headerlink" title="python仅使用time库实现多个判断两个时间戳之间关系的操作"></a>python仅使用time库实现多个判断两个时间戳之间关系的操作</h4><span id="more"></span>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># tz_count表示当前时区与UTC0时区的时间差（秒）</span></span><br><span class="line"><span class="comment"># 判断两个时间戳是否是同一天 </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_today</span>(<span class="params">t1, t2, tz_count=<span class="number">28800</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>((<span class="built_in">int</span>(t1)+<span class="built_in">int</span>(tz_count))/<span class="number">86400</span>) == <span class="built_in">int</span>((<span class="built_in">int</span>(t2)+<span class="built_in">int</span>(tz_count))/<span class="number">86400</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断一个时间戳是否是另一个时间戳的第二天 </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_tomorrow</span>(<span class="params">today, tomorrow, tz_count=<span class="number">28800</span></span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>((<span class="built_in">int</span>(today)+<span class="built_in">int</span>(tz_count))/<span class="number">86400</span>)+<span class="number">1</span> == <span class="built_in">int</span>((<span class="built_in">int</span>(tomorrow)+<span class="built_in">int</span>(tz_count))/<span class="number">86400</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取输入时间戳表示的那一天的开始时间戳</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">day_start</span>(<span class="params">timestamp, tz_count=<span class="number">28800</span></span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>((<span class="built_in">int</span>(timestamp)+<span class="built_in">int</span>(tz_count))/<span class="number">86400</span>)*<span class="number">86400</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算两个时间戳中间差了多少天</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">day_between</span>(<span class="params">now, start, tz_count=<span class="number">28800</span></span>):</span><br><span class="line">    a = day_start(<span class="built_in">int</span>(start)) - day_start(<span class="built_in">int</span>(<span class="built_in">int</span>(now)+<span class="number">1</span>))</span><br><span class="line">    b = <span class="built_in">int</span>(a/<span class="number">86400</span>)</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line"></span><br><span class="line"><span class="comment">#简单测试</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;当前时间戳: <span class="subst">&#123;<span class="built_in">int</span>(time.time())&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(is_today(<span class="number">1616945885.9678676</span>,<span class="number">1616863085</span>))</span><br><span class="line">    <span class="built_in">print</span>(is_tomorrow(<span class="number">1616935085</span>,<span class="number">1616949485</span>))</span><br><span class="line">    <span class="built_in">print</span>(day_between(time.time(),<span class="number">1616862208</span>)) </span><br><span class="line">    <span class="built_in">print</span>(day_start(time.time())) </span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python快速上手flask搭建api服务器</title>
+    <url>/2020/10/08/csdn/python%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bflask%E6%90%AD%E5%BB%BAapi%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<h4 id="python快速上手flask搭建api服务器"><a href="#python快速上手flask搭建api服务器" class="headerlink" title="python快速上手flask搭建api服务器"></a>python快速上手flask搭建api服务器</h4><p>&emsp;&emsp;安装Flask</p>
+<p><code>pip install flask</code></p>
+<p>&emsp;&emsp;新建python文件demo.py （文件名可以随便起）</p>
+<span id="more"></span>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, json</span><br><span class="line"></span><br><span class="line">api = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@api.route(<span class="params"><span class="string">&#x27;/api1&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_api1</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;我是api1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@api.route(<span class="params"><span class="string">&#x27;/api2&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_api2</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;我是api2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    api.run()</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;使用python IDLE运行会报错，所以使用powershell或cmd运行脚本：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/7bcf24554d128fde8298e02a6bcbecce-image-20201008151433459.png" alt="image-20201008151433459"><br>&emsp;&emsp;出现这些说明运行成功了，可以测试一下：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/f1904588c2b9ca5818b56f9a7192da23-image-20201008151540735.png" alt="image-20201008151540735"><br><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/f9ea2f4720295e6b5b70a6555e1e036a-image-20201008151555915.png" alt="image-20201008151555915"></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python找出视频中画面切换，并剪裁出所有画面</title>
+    <url>/2020/10/08/csdn/python%E6%89%BE%E5%87%BA%E8%A7%86%E9%A2%91%E4%B8%AD%E7%94%BB%E9%9D%A2%E5%88%87%E6%8D%A2%EF%BC%8C%E5%B9%B6%E5%89%AA%E8%A3%81%E5%87%BA%E6%89%80%E6%9C%89%E7%94%BB%E9%9D%A2/</url>
+    <content><![CDATA[<h3 id="python找出视频中画面切换，并剪裁出所有画面"><a href="#python找出视频中画面切换，并剪裁出所有画面" class="headerlink" title="python找出视频中画面切换，并剪裁出所有画面"></a>python找出视频中画面切换，并剪裁出所有画面</h3><p>&emsp;&emsp;做剪辑时我们需要的素材通常是一段一段的画面，但是从网上找到的素材往往包含许多段画面，想要剪出每段画面，一般的解决方案就是使用剪辑软件，手动找到画面切换的地方，剪开然后保存，这里我尝试一种新的方案：使用<code>Python</code>中<a href="https://pypi.org/project/ImageHash/" title="ImageHash">ImageHash</a>和<a href="https://pypi.org/project/moviepy/" title="moviepy">moviepy</a>实现自动化剪辑，可以适用于批量生产素材。</p>
+<p>​        首先需要安装Python库</p>
+<span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install ImageHash</span><br><span class="line">pip install moviepy</span><br><span class="line">pip install opencv-python</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;视频中画面切换时，前后两帧的图像变化一般会很大，因此我们需要一个函数来判断视频中相邻的前后帧相似度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">isSimilar</span>(<span class="params">img1, img2</span>):</span><br><span class="line"></span><br><span class="line">	<span class="comment"># OpenCV图片转换为PIL image</span></span><br><span class="line">    img1 = Image.fromarray(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB))  </span><br><span class="line">    img2 = Image.fromarray(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 通过imagehash获取两个图片的平均hash值</span></span><br><span class="line">    n0 = imagehash.average_hash(img1) </span><br><span class="line">    n1 = imagehash.average_hash(img2) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># hash值最小相差多少则判断为不相似，可以根据需要自定义</span></span><br><span class="line">    cutoff = <span class="number">7</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;目标帧hash平均值：<span class="subst">&#123;n0&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;后帧hash平均值：  <span class="subst">&#123;n1&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;hash差值：       <span class="subst">&#123;n0-n1&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> n0 - n1 &lt; cutoff:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;相似&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;不相似&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;判断帧相似度的函数有了，我们还需要一个函数遍历视频中的所有帧，并使用上面的函数判断前后帧是否相似：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sliceVideo</span>(<span class="params">clip, fps</span>):</span><br><span class="line">    im0 = <span class="string">&quot;&quot;</span>			<span class="comment"># 目标帧</span></span><br><span class="line">    start_time = <span class="number">0</span>      <span class="comment"># 片段开始时间</span></span><br><span class="line">    end_time = <span class="number">0</span>        <span class="comment"># 片段结束时间</span></span><br><span class="line">    success_durations = []	<span class="comment"># 成功片段时间列表</span></span><br><span class="line">    skip_durations = []	<span class="comment"># 排除片段时间列表</span></span><br><span class="line">    <span class="keyword">for</span> i,img <span class="keyword">in</span> <span class="built_in">enumerate</span>(clip.iter_frames(fps)):</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>: im0 = img</span><br><span class="line">        time = (i) / fps</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;\n第<span class="subst">&#123;time&#125;</span>秒&#x27;</span>)</span><br><span class="line">        result = isSimilar(im0, img)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> result:	<span class="comment"># 结果为不相似</span></span><br><span class="line">            end_time = (i-<span class="number">1</span>) / fps</span><br><span class="line">            <span class="built_in">print</span>(start_time, end_time)</span><br><span class="line">            <span class="keyword">if</span> start_time == end_time:	<span class="comment"># 排除情况，开始时间和结束时间相同的话moviepy会报错；也可以根据需要筛选时长大于多少的片段</span></span><br><span class="line">                skip_durations.append([start_time, end_time])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                clip.subclip(start_time, end_time).write_videofile(<span class="string">f&quot;SUBCLIP-<span class="subst">&#123;i&#125;</span>.mp4&quot;</span>)</span><br><span class="line">                success_durations.append([start_time, end_time])</span><br><span class="line">            start_time = time</span><br><span class="line">        im0 = img</span><br><span class="line">    <span class="comment"># 前面的循环并没有包括视频中最后一段画面，因此需要在最后加上</span></span><br><span class="line">    end_time = clip.duration</span><br><span class="line">    <span class="keyword">if</span> start_time == end_time:</span><br><span class="line">        skip_durations.append([start_time, end_time])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        clip.subclip(start_time, end_time).write_videofile(<span class="string">f&quot;SUBCLIP-<span class="subst">&#123;i&#125;</span>.mp4&quot;</span>)</span><br><span class="line">        success_durations.append([start_time, end_time])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> [success_durations, skip_durations]</span><br></pre></td></tr></table></figure>
+
+<h5 id="源代码如下"><a href="#源代码如下" class="headerlink" title="源代码如下"></a>源代码如下</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> cv2 <span class="keyword">import</span> cv2 <span class="keyword">as</span> cv2</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> imagehash</span><br><span class="line"><span class="keyword">from</span> moviepy.editor <span class="keyword">import</span> VideoFileClip</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">isSimilar</span>(<span class="params">img1, img2</span>):</span><br><span class="line"></span><br><span class="line">	<span class="comment"># OpenCV图片转换为PIL image</span></span><br><span class="line">    img1 = Image.fromarray(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB))  </span><br><span class="line">    img2 = Image.fromarray(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 通过imagehash获取两个图片的平均hash值</span></span><br><span class="line">    n0 = imagehash.average_hash(img1) </span><br><span class="line">    n1 = imagehash.average_hash(img2) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># hash值最小相差多少则判断为不相似，可以根据需要自定义</span></span><br><span class="line">    cutoff = <span class="number">7</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;目标帧hash平均值：<span class="subst">&#123;n0&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;后帧hash平均值：  <span class="subst">&#123;n1&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;hash差值：       <span class="subst">&#123;n0-n1&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> n0 - n1 &lt; cutoff:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;相似&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;不相似&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sliceVideo</span>(<span class="params">clip, fps</span>):</span><br><span class="line">    im0 = <span class="string">&quot;&quot;</span>			<span class="comment"># 目标帧</span></span><br><span class="line">    start_time = <span class="number">0</span>      <span class="comment"># 片段开始时间</span></span><br><span class="line">    end_time = <span class="number">0</span>        <span class="comment"># 片段结束时间</span></span><br><span class="line">    success_durations = []	<span class="comment"># 成功片段时间列表</span></span><br><span class="line">    skip_durations = []	<span class="comment"># 排除片段时间列表</span></span><br><span class="line">    <span class="keyword">for</span> i,img <span class="keyword">in</span> <span class="built_in">enumerate</span>(clip.iter_frames(fps)):</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>: im0 = img</span><br><span class="line">        time = (i) / fps</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;\n第<span class="subst">&#123;time&#125;</span>秒&#x27;</span>)</span><br><span class="line">        result = isSimilar(im0, img)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> result:	<span class="comment"># 结果为不相似</span></span><br><span class="line">            end_time = (i-<span class="number">1</span>) / fps</span><br><span class="line">            <span class="built_in">print</span>(start_time, end_time)</span><br><span class="line">            <span class="keyword">if</span> start_time == end_time:	<span class="comment"># 排除情况，开始时间和结束时间相同的话moviepy会报错；也可以根据需要筛选时长大于多少的片段</span></span><br><span class="line">                skip_durations.append([start_time, end_time])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                clip.subclip(start_time, end_time).write_videofile(<span class="string">f&quot;SUBCLIP-<span class="subst">&#123;i&#125;</span>.mp4&quot;</span>)</span><br><span class="line">                success_durations.append([start_time, end_time])</span><br><span class="line">            start_time = time</span><br><span class="line">        im0 = img</span><br><span class="line">    <span class="comment"># 前面的循环并没有包括视频中最后一段画面，因此需要在最后加上</span></span><br><span class="line">    end_time = clip.duration</span><br><span class="line">    <span class="keyword">if</span> start_time == end_time:  <span class="comment"># 排除情况</span></span><br><span class="line">        skip_durations.append([start_time, end_time])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        clip.subclip(start_time, end_time).write_videofile(<span class="string">f&quot;SUBCLIP-<span class="subst">&#123;i&#125;</span>.mp4&quot;</span>)</span><br><span class="line">        success_durations.append([start_time, end_time])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> success_durations, skip_durations</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    clip = VideoFileClip(<span class="string">&quot;demo.mp4&quot;</span>)</span><br><span class="line">    success, skip = sliceVideo(clip, clip.fps)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;成功片段：\n<span class="subst">&#123;success&#125;</span>\n\n排除片段：\n<span class="subst">&#123;skip&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考文章：<br><a href="https://blog.csdn.net/enter89/article/details/90293971">https://blog.csdn.net/enter89/article/details/90293971</a><br><a href="https://zhuanlan.zhihu.com/p/161530919">https://zhuanlan.zhihu.com/p/161530919</a></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vscode开发Tampermonkey油猴脚本</title>
+    <url>/2020/10/09/csdn/%E4%BD%BF%E7%94%A8vscode%E5%BC%80%E5%8F%91Tampermonkey%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="使用vscode开发Tampermonkey油猴脚本"><a href="#使用vscode开发Tampermonkey油猴脚本" class="headerlink" title="使用vscode开发Tampermonkey油猴脚本"></a>使用vscode开发Tampermonkey油猴脚本</h2><p>最近尝试开发油猴脚本，但是油猴自带的编辑器确实让人一言难尽，找了很长时间，终于找到一个完美的解决方案。</p>
+<p>油猴可以 <code>// @require ...</code>的方法引用外部js文件，如果要引用本地文件，需要在浏览器插件设置中允许油猴访问文件URL，步骤</p>
+<ol>
+<li>在浏览器地址栏输入：<code>edge://extensions</code>（新版Edge，chrome用户请将edge换成chrome）<span id="more"></span></li>
+<li>找到Tampermonkey，点详细信息，打开<code>允许访问文件 URL</code></li>
+</ol>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/aa04e1af1aa9d0d7fd1ad932316f3f1b-image-20201009161344279.png" alt="image-20201009161344279"><br>现在在油猴中新建一个脚本，在前面添加你引用的本地文件的路径，注意路径前面要加<code>file://</code>下面的默认代码就可以删了：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/78b09d7fbd6d5382f268ec6c1b1136f7-image-20201009162825486.png" alt="image-20201009162825486"><br>这时候就可以在vscode中愉快地写代码啦~ 当然，其他编辑器也是可以的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/blog/31b07fb89e9f65e379b35c94b5e90b65-image-20201009163259053.png" alt="image-20201009163259053"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>油猴</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于我</title>
+    <url>/1999/10/11/poplzp-s-posts/README/</url>
+    <content><![CDATA[<h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><p>🙋‍♂️</p>
+<p>POPLZP 的博客</p>
+<span id="more"></span>
+
+<blockquote>
+<p>河南理工大学老学长一枚</p>
+</blockquote>
+<p>QQ：255499213</p>
+<table>
+<thead>
+<tr>
+<th><center>网站运行于</center></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span style="color:green">✔</span> <a href="https://github.com/poplzp/poplzp.github.io">poplzp/poplzp.github.io: poplzp’s blog</a></td>
+</tr>
+<tr>
+<td><span style="color:green">✔</span> <a href="https://gitee.com/poplzp/poplzp">LiuZhiPeng/poplzp (gitee.com)</a></td>
+</tr>
+</tbody></table>
+<p>🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>C++ rand()和srand()</title>
+    <url>/2021/11/23/poplzp-s-posts/hexo/2021/C++%20rand()%E5%92%8Csrand()/</url>
+    <content><![CDATA[<h1 id="C-rand-和srand"><a href="#C-rand-和srand" class="headerlink" title="C++ rand()和srand()"></a>C++ rand()和srand()</h1><p>rand() 的内部实现是用线性同余法做的，它不是真的随机数，因其周期特别长，故在一定的范围里可看成是随机的。</p>
+<p>rand()返回一随机数值的范围在0至RAND_MAX 间。RAND_MAX的范围最少是在32767之间(int)。用unsigned int 双字节是65535，四字节是4294967295的整数范围。0~RAND_MAX每个数字被选中的机率是相同的。这些随机数在一定范围内呈周期分布，因此rand()生成的随机数是伪随机数（当你取的随机数数量大于数值范围时就会重复出现）</p>
+<span id="more"></span>
+
+<p>比如用这样一段代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot; %ld &quot;</span>, <span class="built_in">random</span>());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>无论你执行多少遍，输出都是一样的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/7c304bf891c5384ff201bc7aab502caf-current.png" alt="image-20211123161336591"></p>
+<p>如果运行前使用srand()初始化，如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot; %d &quot;</span>, <span class="built_in">rand</span>());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用time初始化，时间不同随机数种子不同，那么结果如下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/8691765b2f54c98e51b6cfd8da98add7-current.png" alt="image-20211123161448679"></p>
+]]></content>
+      <categories>
+        <category>C++</category>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Clion 插件 &quot;C/C++ Single File Execution&quot; 修复cmake报错</title>
+    <url>/2021/11/26/poplzp-s-posts/hexo/2021/Clion%20%E6%8F%92%E4%BB%B6%E3%80%90CC++%20Single%20File%20Execution%E3%80%91%E4%BF%AE%E5%A4%8Dcmake%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h1 id="Clion-插件-“C-C-Single-File-Execution”-修复cmake报错"><a href="#Clion-插件-“C-C-Single-File-Execution”-修复cmake报错" class="headerlink" title="Clion 插件 “C/C++ Single File Execution” 修复cmake报错"></a>Clion 插件 “C/C++ Single File Execution” 修复cmake报错</h1><p>发现clion也有leetcode插件，终于不用苦于配置vscode的C++ debug环境了，当我在Clion上安装好leetcode插件做题时发现本地调试成了问题，不会只能提交leetcode评测吧，这样还不如在网页端打开leetcode，再用CodeRunner了</p>
+<p>我查了一下解决方案，发现有C/C++ Single File Execution这个插件，可以在 Cmakelist添加可执行文件，从而构建和运行单个 c/cpp 文件，于是我满怀期待的下载来使用，结果在使用时却报错了，如图</p>
+<span id="more"></span>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/352cacaad914b442ab0fbf97649c38f8-current.png" alt="image-20211126140940077"></p>
+<p>看了一下原因好像是命名不符合规范，然后我就尝试改一下名字看看是否能修复，结果发现真的是名字的问题，改成字母的数字的组合是不会报错的</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/35436678305533dcff555d4aad8078af-current.png" alt="image-20211126141346122"></p>
+<p>但是不能每次添加完都到到cmakelist文件中再手动修改一次吧，这样不如直接去修改cmakelist了。于是我找到C/C++ Single File Execution插件的开源地址，fork了一份，决定自己解决这个问题。</p>
+<p>标点不能有？那就在插件读取文件名的时候把标点去掉。不能有中文字符？那就将中文转化为拼音，下面是主要修改的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">cn2Spell</span><span class="params">(String chinese)</span> &#123;</span><br><span class="line">    <span class="type">StringBuffer</span> <span class="variable">pybf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">    <span class="type">char</span>[] arr = chinese.toCharArray();</span><br><span class="line">    <span class="type">HanyuPinyinOutputFormat</span> <span class="variable">defaultFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HanyuPinyinOutputFormat</span>();</span><br><span class="line">    defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);</span><br><span class="line">    defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : arr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c &gt; <span class="number">128</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                pybf.append(PinyinHelper.toHanyuPinyinStringArray(c, defaultFormat)[<span class="number">0</span>]);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (BadHanyuPinyinOutputFormatCombination e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pybf.append(c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pybf.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** build target exeName according based on the configuration */</span></span><br><span class="line"><span class="keyword">private</span> String <span class="title function_">buildExeName</span><span class="params">(String exeName)</span> &#123;</span><br><span class="line">    String newExeName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* %FILENAME% %SAFEFILENAME% replacement */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> sourceFile.getNameWithoutExtension();</span><br><span class="line">    <span class="comment">/* 将汉字转化为拼音, 清除所有符号, 只留下字母、数字、汉字3类 */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">safeFileName</span> <span class="operator">=</span> cn2Spell(fileName).replaceAll(<span class="string">&quot;[\\pP\\p&#123;Punct&#125;]&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    newExeName = exeName.replace(SingleFileExecutionConfig.EXECUTABLE_NAME_FILENAME, fileName )</span><br><span class="line">            .replace(SingleFileExecutionConfig.EXECUTABLE_NAME_SAFEFILENAME, safeFileName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newExeName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改完之后打包安装，完美！</p>
+<p>这是修改后的插件自动添加的语句，cmake没有报错</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/824092d8c9e78dc413bd84edf95307ef-current.png" alt="image-20211126142740140"></p>
+<p>源文件的main函数旁边也显示了小三角可以选择编译运行或debug。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/4754fa73b7b6ff0206d0c4d0a0da487a-current.png" alt="image-20211126142931968"></p>
+<blockquote>
+<p>修改后的插件项目地址</p>
+<p><a href="https://github.com/poplzp/SingleFileExecutionPlugin">poplzp/SingleFileExecutionPlugin</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Clion插件</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>Clion插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>parallels虚拟机试用过期后重新申请14天试用</title>
+    <url>/2021/12/01/poplzp-s-posts/hexo/2021/parallels%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%95%E7%94%A8%E8%BF%87%E6%9C%9F%E5%90%8E%E9%87%8D%E6%96%B0%E7%94%B3%E8%AF%B714%E5%A4%A9%E8%AF%95%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="parallels虚拟机试用过期后重新申请14天试用"><a href="#parallels虚拟机试用过期后重新申请14天试用" class="headerlink" title="parallels虚拟机试用过期后重新申请14天试用"></a>parallels虚拟机试用过期后重新申请14天试用</h1><p>我pd17上的win10突然不能联网了，因为这个win10虚拟机上没有什么重要文件，所以我删除了它，打算再新建一个win10虚拟机看看能不能解决问题。由于我的pd17是无限试用版，在我新建完一个新的win10虚拟机后，它提醒我试用到期了，PD Runner也不能用了。</p>
+<span id="more"></span>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/dc2e47248e9db4280b33490e973ffa8f-current.png" alt="截屏2021-12-01 下午1.11.56"></p>
+<p>难道我的电脑只能付费了吗？奈何我贫苦大学生一个，囊中羞涩，暂时拿不出购买pd许可证的钱，如果资金允许还是可以考虑购买许可证支持一下pd。没办法，我尝试了卸载重装，不行，尝试安装pd16报错了，应该是pd16不支持Monterey，我又尝试了vmware fusion，体验后感觉vm性能实在太差，根本不能和pd比。</p>
+<p>在几番尝试无果后，最后祭出大招！研究了pd申请试用的规则后，发现它的试用应该是和mac序列号有关，我的电脑是黑苹果，更换序列号很简单，然后我就 打开了OpenCore Configurator，打开oc引导的config文件</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/3078f06d488daeada64b9a26c2204efe-current.png" alt="image-20211201221307389"></p>
+<p>根据上面的步骤，第3步点击后选择与原来相同的机型，就可以生成一个新的序列号</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/022a3769bf3da66e6bb1e5e48d598b9f-current.png" alt="image-20211201220853645"></p>
+<p>检查生成的序列号有没有被使用，选择一个没有被使用的序列号，然后把ProcessorType改成0</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/aab11c588e82a704f4eb6a07b85474f3-current.png" alt="image-20211201221713450"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/baa006755019411c5a2efb0f50a83683-current.png" alt="image-20211201221449417"></p>
+<p>command+s保存，为了保险起见我把pd17先卸载了，然后重启电脑再重新安装pd17，我又重新注册了一个pd账号，登录后又可以申请试用了！</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/c69a0706bacc36db86249043656e5292-current.png" alt="image-20211201222404107"></p>
+<p>注意更换序列号之后iCloud和AppStore需要重新登录，一些付费软件可能也要重新激活。</p>
+]]></content>
+      <categories>
+        <category>macos</category>
+      </categories>
+      <tags>
+        <tag>macos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用GitHub搭建网站过程记录</title>
+    <url>/2021/11/23/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8GitHub%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%BF%87%E7%A8%8B%E5%85%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="使用GitHub搭建网站过程记录"><a href="#使用GitHub搭建网站过程记录" class="headerlink" title="使用GitHub搭建网站过程记录"></a>使用GitHub搭建网站过程记录</h1><p>使用GitHub pages搭建个人网站、博客等等（静态）。</p>
+<p>将网站托管到GitHub，稳定性很高，不用买服务器，也不需要维护，真香！</p>
+<p>下面我对这一过程做简略总结。</p>
+<span id="more"></span>
+
+<h2 id="1、登录GitHub账号，新建仓库"><a href="#1、登录GitHub账号，新建仓库" class="headerlink" title="1、登录GitHub账号，新建仓库"></a>1、登录GitHub账号，新建仓库</h2><p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/43615979f42a377e4145ec9de1bf6c77-current.png" alt="image-20211116115245435"></p>
+<h2 id="配置新仓库"><a href="#配置新仓库" class="headerlink" title="配置新仓库"></a>配置新仓库</h2><p>这里有几点需要注意：</p>
+<ul>
+<li>1、”Repository name” 需要设置为<code>用户名.gtihub.io</code></li>
+<li>2、选择”Public”</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/ee5a860e0db847e2d2e91863d7d10bcc-current.png" alt="image-20211116121831212"></p>
+<ul>
+<li>3、最后”Initialize this repository with” 这里把 “Add a README file” 选上，如图</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/f556babf563ed060343b0ff192cf849f-current.png" alt="image-20211116122606071"></p>
+<ul>
+<li>最后点击”Create repository” 即可</li>
+<li>这时就已经可以使用<code>用户名.girhub.io</code>访问了</li>
+</ul>
+<h2 id="3、设置Github-Pages主题（可选）"><a href="#3、设置Github-Pages主题（可选）" class="headerlink" title="3、设置Github Pages主题（可选）"></a>3、设置Github Pages主题（可选）</h2><p>上一步完成之后就会跳转到这个页面，然后点”Settings” 按钮，如图</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/3234b3f00b86d91efb7c5f3e1cea809a-current.png" alt="image-20211116122850818"></p>
+<p>在新的页面中往下滑，找到”GitHub Pages”，如图，点击蓝色链接</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/023023b3b6d1fce077f97857e3ed0ad5-current.png" alt="image-20211116125333301"></p>
+<p>这里可以修改主题</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/dc9c5e7f9fae8ccab4f14a090ac51923-current.png" alt="image-20211116125416523"></p>
+<p>选择主题后，提交修改</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/0085a4a0fedd9f4d700c551fa2b7b0d5-current.png" alt="image-20211116125751435"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/3635bab260cf77aed8ca956471494b43-current.png" alt="image-20211116125840305"></p>
+<h2 id="4、克隆项目到本地进行开发"><a href="#4、克隆项目到本地进行开发" class="headerlink" title="4、克隆项目到本地进行开发"></a>4、克隆项目到本地进行开发</h2><p>终端中输入指令即可，这里的”用户名”要修改为你自己的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/用户名/用户名.github.io.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/1ddffa66e0e148530890fe50a61c1b98-current.png" alt="image-20211116130123615"></p>
+<p>需要了解的是Pages只支持静态网页</p>
+]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>网站</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用archinstall安装Arch时自定义btrfs子卷的方法</title>
+    <url>/2021/12/27/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8archinstall%E5%AE%89%E8%A3%85Arch%E6%97%B6%E8%87%AA%E5%AE%9A%E4%B9%89btrfs%E5%AD%90%E5%8D%B7%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="使用archinstall安装Arch时自定义btrfs子卷的方法"><a href="#使用archinstall安装Arch时自定义btrfs子卷的方法" class="headerlink" title="使用archinstall安装Arch时自定义btrfs子卷的方法"></a>使用archinstall安装Arch时自定义btrfs子卷的方法</h1><p>Arch最新的安装镜像附带了一个简单的安装工具<code>archinstall</code>，现在还在开发和完善中，还是有一些bug，不过不是很严重，但是用这个工具安装arch的确要方便不少。我很喜欢这个工具，相比手动敲命令安装arch，这个工具用起来简直太爽了。但是美中不足的是，目前的版本选择分区时不能自定义btrfs子卷。</p>
+<p>我研究了代码后，找到了一种自定义btrfs子卷的方法，现在已经成功安装，先来展示一下</p>
+<span id="more"></span>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227204958-2021-12-27%2020-49-07%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2021-12-27 20-49-07 的屏幕截图"></p>
+<p>这是我的实体机，@子卷挂在根目录，@home挂载/home，@root挂载/root …</p>
+<p>下面我用虚拟机演示如何实现这一效果</p>
+<h2 id="u盘启动安装系统"><a href="#u盘启动安装系统" class="headerlink" title="u盘启动安装系统"></a>u盘启动安装系统</h2><p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227205543-image-20211227205542984.png" alt="image-20211227205542984"></p>
+<h2 id="修改pacman源"><a href="#修改pacman源" class="headerlink" title="修改pacman源"></a>修改pacman源</h2><p>archinstall启动时会自动更新仓库，换成国内源速度会快一些，终端输入<code>vim /etc/pacman.d/mirrorlist</code>，把里面的东西全都删掉，加上阿里的源：<code>Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch</code>，然后<code>pacman -Syy</code>更新一下仓库。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227210142-image-20211227210142384.png" alt="image-20211227210142384"></p>
+<h2 id="新建分区，可以用cfdisk工具"><a href="#新建分区，可以用cfdisk工具" class="headerlink" title="新建分区，可以用cfdisk工具"></a>新建分区，可以用cfdisk工具</h2><p>选择gpt然后分一下区，我这里是虚拟机仅供参考，实体机操作时要确定分区是否正确，避免数据丢失，修改完后选择write保存，然后按q退出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227210729-image-20211227210729274.png" alt="image-20211227210729274"></p>
+<p>完成后lsblk应该是这样</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227211030-image-20211227211030442.png" alt="image-20211227211030442"></p>
+<h2 id="格式化分区"><a href="#格式化分区" class="headerlink" title="格式化分区"></a>格式化分区</h2><p>efi格式化为fat32，另一个分区格式化为btrfs，用于安装系统</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227211139-image-20211227211139727.png" alt="image-20211227211139727"></p>
+<p><code>lsblk -f</code>查看一下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227211239-image-20211227211239584.png" alt="image-20211227211239584"></p>
+<h2 id="挂载分区，创建子卷"><a href="#挂载分区，创建子卷" class="headerlink" title="挂载分区，创建子卷"></a>挂载分区，创建子卷</h2><p>接下来就开始创建和挂载分区了 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /mnt/btrfs-root	<span class="comment"># btrfs分区根目录，用来创建和管理子卷</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/archinstall	<span class="comment"># 这个路径名不能改，archinstall工具一会要安装到这个路径下</span></span><br><span class="line"></span><br><span class="line">mount /dev/vda2 /mnt/btrfs-root -o subvol=/	<span class="comment"># 把btrfs分区挂载好</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /mnt/btrfs-root	<span class="comment"># 进到btrfs根</span></span><br><span class="line"></span><br><span class="line">btrfs su c @	 	<span class="comment"># 创建系统根目录子卷</span></span><br><span class="line">btrfs su c @home   	<span class="comment"># 创建home子卷</span></span><br><span class="line">btrfs su c @root 	<span class="comment"># 创建root子卷</span></span><br><span class="line">btrfs su c @<span class="built_in">log</span> 	<span class="comment"># 创建日志子卷</span></span><br><span class="line"><span class="comment"># 可以创建更多其他子卷用来挂载，这里仅创建这几个作演示</span></span><br><span class="line"></span><br><span class="line">mount /dev/vda2 /mnt/archinstall -o subvol=/@	<span class="comment"># 挂载系统根目录子卷</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/archinstall/boot			<span class="comment"># 创建挂载点目录，别忘了boot目录用来挂载efi</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/archinstall/home			</span><br><span class="line"><span class="built_in">mkdir</span> /mnt/archinstall/root</span><br><span class="line"><span class="built_in">mkdir</span> -p /mnt/archinstall/var/log</span><br><span class="line"></span><br><span class="line">mount /dev/vda1 /mnt/archinstall/boot	<span class="comment"># 挂载各子卷</span></span><br><span class="line">mount /dev/vda2 /mnt/archinstall/home -o subvol=/@home</span><br><span class="line">mount /dev/vda2 /mnt/archinstall/root -o subvol=/@root</span><br><span class="line">mount /dev/vda2 /mnt/archinstall/var/log -o subvol=/@<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">lsblk		<span class="comment"># 上面操作完成后检查以下挂载情况，参考下图</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227212359-image-20211227212358849.png" alt="image-20211227212358849"></p>
+<h2 id="修改archinstall代码"><a href="#修改archinstall代码" class="headerlink" title="修改archinstall代码"></a>修改archinstall代码</h2><p>上面确认没问题后，接下来修改archinstall代码，让他支持安装到btrfs子卷，不然的话会报错 (archinstall-2.3.0) ！</p>
+<p>路径有点长请看截图</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227214125-image-20211227214125440.png" alt="image-20211227214125440"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227214353-image-20211227214353691.png" alt="image-20211227214353691"></p>
+<p>把红框框住的代码<code>self.path</code>改为<code>self.mountpoint</code>，如下，修改完之后保存退出；</p>
+<p>如果使用<code>self.path</code>btrfs分区子卷自带的标识会导致读不到分区信息，就会导致archinstall崩溃，改为mountpoint通过挂载点读取分区信息就不会有问题</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227214530-image-20211227214530123.png" alt="image-20211227214530123"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>准备工作就已经完成了，下面就开始进行安装了，终端输入archinstall运行安装脚本</p>
+<ul>
+<li>1、键盘语言：回车使用默认-us</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227215017-image-20211227215017635.png" alt="image-20211227215017635"></p>
+<ul>
+<li>2、地区：输入11选择中国，这里用来配置镜像源</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227215245-image-20211227215244958.png" alt="image-20211227215244958"></p>
+<ul>
+<li>3、选择硬盘：我们之前配置好了，这里直接回车跳过，下一个询问也直接回车跳过</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227215348-image-20211227215348706.png" alt="image-20211227215348706"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227215515-image-20211227215515664.png" alt="image-20211227215515664"></p>
+<ul>
+<li><p>4、是否使用grub：y - 是</p>
+</li>
+<li><p>5、是否启用zram：y - 是</p>
+</li>
+<li><p>6、主机名：自定义</p>
+</li>
+<li><p>7、root密码留空，下一步创建sudo账户</p>
+</li>
+<li><p>8、创建sudo账户，输入密码</p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227215851-image-20211227215851489.png" alt="image-20211227215851489"></p>
+<p>下面的就简单了，我简单描述一下。</p>
+<p>下一步选择0安装桌面环境，选择一个桌面环境，选择显卡声卡驱动，这些都是根据自己电脑的情况进行选择 。</p>
+<p>后面选择内核使用默认即可，然后添加自定义包，安装networkmanager，输入时区Asia/Shanghai，启用网络校时。最后就会来到确认界面，检查以下没有问题的话就可以回车安装了，安装时会下载包，请确保网络通畅，然后等待安装完成</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227220937-image-20211227220937372.png" alt="image-20211227220937372"></p>
+<p>安装完成后会提示你是否chroot切换到刚刚安装的系统进行配置，可以根据自己的需求选择</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227222759-image-20211227222759535.png" alt="image-20211227222759535"></p>
+<p>确认安装完成后，就可以重启电脑啦，电脑会自动进入到刚刚安装的arch</p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211228090753-image-20211228090752817.png" alt="image-20211228090752817"></p>
+<p>进入系统，检查一下各个子卷挂载情况，如下图</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/20211227223221-image-20211227223221150.png" alt="image-20211227223221150"></p>
+<p><strong>The End</strong></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>archlinux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>双击command运行时找不到当前目录的文件</title>
+    <url>/2021/11/23/poplzp-s-posts/hexo/2021/%E5%8F%8C%E5%87%BBcommand%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E7%9A%84%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="双击command运行时找不到当前目录的文件"><a href="#双击command运行时找不到当前目录的文件" class="headerlink" title="双击command运行时找不到当前目录的文件"></a>双击command运行时找不到当前目录的文件</h1><p>明明当前目录下有main.py 这个文件，新建一个command文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3 main.py </span><br><span class="line">open -a /Applications/Typora.app newpost.md</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>双击运行时却提示如下（找不到main.py）</p>
+<span id="more"></span>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/b1c3e481dd8e8b443b60054793ec079e-current.png" alt="截屏2021-11-23 下午12.21.18"></p>
+<h2 id="原因和解决方法"><a href="#原因和解决方法" class="headerlink" title="原因和解决方法"></a>原因和解决方法</h2><p>双击运行command文件时没有进入到文件所在目录，在运行脚本前加上<code>cd &quot;$(dirname &quot;$0&quot;)&quot;</code> 就好了，如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(dirname <span class="string">&quot;<span class="variable">$0</span>&quot;</span>)</span>&quot;</span></span><br><span class="line">python3 main.py </span><br><span class="line">open -a /Applications/Typora.app newpost.md</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>macos</category>
+      </categories>
+      <tags>
+        <tag>macos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查看小侦探排行榜中的成绩</title>
+    <url>/2021/01/14/poplzp-s-posts/hexo/2021/%E6%9F%A5%E7%9C%8B%E5%B0%8F%E4%BE%A6%E6%8E%A2%E6%8E%92%E8%A1%8C%E6%A6%9C%E4%B8%AD%E7%9A%84%E6%88%90%E7%BB%A9/</url>
+    <content><![CDATA[<h1 id="查看小侦探排行榜中的成绩"><a href="#查看小侦探排行榜中的成绩" class="headerlink" title="查看小侦探排行榜中的成绩"></a>查看小侦探排行榜中的成绩</h1><p>理工小侦探查询成绩的api只需要知道某个同学在小侦探平台的openid就可以查到他的成绩，而小侦探学霸排行的api又把同学们的openid暴露了出来，因此我们就有办法看到学霸排行里那些同学们都是考多少分了，有了这个发现，我简单写了一个程序。</p>
+<span id="more"></span>
+
+<p>直接上使用教程：<br>1、下载源代码：</p>
+<ul>
+<li>GitHub：<a href="https://github.com/poplzp/xzt-rank">poplzp/xzt-rank (github.com)</a></li>
+</ul>
+<p>2、通过微信打开小侦探成绩查询页面，点右上角的三个点，找到复制链接，找个地方粘贴一下，找到后面有openid=xxxxxx，其中xxxxxx就是你的openid</p>
+<p>3、打开源代码中js/index.js文件，把openid填到”my_openid”后双引号里面<br><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/5a845faad50600821b67ef63987f69af-202112021039257.png" alt="image-20211202103939198"></p>
+<p>4、使用浏览器打开源代码中的index.html，推荐使用chrome</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/5f3454f1a8c4f92f4bb2ca836ad06451-202112021044867.png" alt="image-20211202104424804"></p>
+<p>不保证长期有效哦</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>联想 Yoga720 15黑苹果备忘录</title>
+    <url>/2021/12/31/poplzp-s-posts/hexo/2021/%E8%81%94%E6%83%B3%20Yoga720-15%E9%BB%91%E8%8B%B9%E6%9E%9C%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="联想-Yoga720-15黑苹果备忘录"><a href="#联想-Yoga720-15黑苹果备忘录" class="headerlink" title="联想 Yoga720 15黑苹果备忘录"></a>联想 Yoga720 15黑苹果备忘录</h1><p>为了让我的电脑吃上黑苹果，我也是折腾了一两个星期，后续又修复了一些bug，现在除了一些无解和比较难解决的问题，比如独显，指纹，airdrop（需要换网卡）和雷电3之外，其他的都可以正常使用，可以认为是很完美。</p>
+<span id="more"></span>
+
+<p>黑苹果使用了一段时间，总结一下让我感觉很爽的点：系统实在是好用，苹果的icloud服务配合我的iPhone，iPad用起来真的舒服，虽然隔空投送不能用，但是接力可以用，可以体验到Mac接电话，收短信，剪切板同步等功能，使用起来简直不要太爽。Mac系统打代码也很舒适，开发环境配置起来相比win，linux要简单很多。</p>
+<p>然后介绍一下不爽的点吧：使用中存在的问题也很影响体验，首先独显不能驱动，只靠一个核显处理，系统动画有时会卡顿，尤其是edge浏览器在调节窗口大小时，ps，ae的性能更是很差；然后Mac系统很占存储，系统加快照都是动不动几十G的占用，硬盘空间分配起来实在拮据。默认1080p在笔记本上显示太小，强制开启hidpi后因为不是真正的高分屏，文字和图标在移动时会跳动，看起来也很不舒服。主要也是因为这些问题，我的Mac系统在刚装好用了大概一个星期后，就基本上吃灰了，现在打算删掉了，准备叛逃Arch了🤫。删掉之前在博客做一个备份。</p>
+<h2 id="我的电脑配置"><a href="#我的电脑配置" class="headerlink" title="我的电脑配置"></a>我的电脑配置</h2><p>联想yoga720-15ikb</p>
+<ul>
+<li><p>i5-7300hq（HD630）</p>
+</li>
+<li><p>Gtx1050 2gb（禁用）</p>
+</li>
+<li><p>Intel 760p 1tb</p>
+</li>
+<li><p>2 x 8gb Hynix ddr4 2133Mhz</p>
+</li>
+<li><p>Intel wireless-AC 8265</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/b74ad2740b5d5c7e34e24f199b41294b-current.png" alt="image-20211231131452745"></p>
+</li>
+</ul>
+<h2 id="BIOS设置"><a href="#BIOS设置" class="headerlink" title="BIOS设置"></a>BIOS设置</h2><ul>
+<li>SATA Controller mode: AHCI </li>
+<li>Intel Virtual Technology: Enabled （同时config.plist修改DisableIoMapper = Yes）</li>
+<li>Thunderbolt Device Boot Support: Disabled</li>
+<li>Intel Platform Trust Technology: Disabled</li>
+<li>Intel SGX: Disabled</li>
+<li>Secure Boot: Disabled</li>
+<li>Boot Mode: UEFI</li>
+<li>CfgLock: 关闭 （比较有挑战 <a href="https://www.reddit.com/r/hackintosh/comments/hz2rtm/cfg_lockunlocking_alternative_method/">参考教程</a>）</li>
+</ul>
+<h2 id="系统和引导版本"><a href="#系统和引导版本" class="headerlink" title="系统和引导版本"></a>系统和引导版本</h2><p>Monterey 12.0.1、opencore 0.7.4</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/67d977796641f0f14c269bab95ced599-current.png" alt="image-20211231111357434"></p>
+<h2 id="正常实现的功能"><a href="#正常实现的功能" class="headerlink" title="正常实现的功能"></a>正常实现的功能</h2><ul>
+<li><p>触摸板、触摸屏、键盘</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/6c682438c364b18ed8bb2d2ed337704b-current.png" alt="image-20211231111700936"></p>
+</li>
+<li><p>播放，麦克风</p>
+</li>
+<li><p>摄像头</p>
+</li>
+<li><p>usb</p>
+</li>
+<li><p>雷电3（需开机前插入）</p>
+</li>
+<li><p>音量、亮度快捷键</p>
+</li>
+<li><p>合盖锁定、电源键锁定</p>
+</li>
+<li><p>电源键合盖睡眠正常</p>
+</li>
+<li><p>Wi-Fi（使用Airportitlwm驱动 <a href="https://github.com/OpenIntelWireless/itlwm">GitHub</a>）</p>
+</li>
+<li><p>蓝牙</p>
+</li>
+<li><p>睿频</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/17001b56131612a9c8bc1229b8287739-current.png" alt="image-20211231111615313"></p>
+</li>
+<li><p>GPU（核显）</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/143f732795d09e1cc67a76acdd09f3ca-current.png" alt="image-20211231111856490"></p>
+</li>
+<li><p>音量快捷键，亮度快捷键正常；锁屏快捷键和截屏快捷键可以使用BetterTouchTool软件实现。</p>
+</li>
+</ul>
+<h2 id="系统优化和经验"><a href="#系统优化和经验" class="headerlink" title="系统优化和经验"></a>系统优化和经验</h2><h3 id="解决发热"><a href="#解决发热" class="headerlink" title="解决发热"></a>解决发热</h3><p>使用时发热较大，目前使用 <a href="https://github.com/sicreative/VoltageShift">VoltageShift</a> 解决，参考<a href="https://bbs.pcbeta.com/viewthread-1807297-1-1.html">【续航】用VoltageShift降低cpu和gpu电压已延长续航，已测试可行</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./voltageshift info（查看现有cpu，gpu电压及功耗状态）</span><br><span class="line">./voltageshift offset -125 -100 -125（降低 CPU by 125mv, GPU by 100mv and Cache by 125mv，降低幅度可以自行调整）</span><br><span class="line">sudo ./voltageshift buildlaunchd -125 -100 -125 0 0 0 60（设置系统每次启动后及每一小时检查并设置一次电压 CPU -125mv, GPU -100mv and Cache -125mv，建议在上一条设置后运行以下电脑以基本确定降低的电压幅度不会影响系统运行 ）</span><br><span class="line">./voltageshift removelaunchd(如果不想降低电压了或者降得太多导致down机了，可以去除所有电压相关设置，恢复默认）</span><br></pre></td></tr></table></figure>
+
+<h3 id="开启hidpi"><a href="#开启hidpi" class="headerlink" title="开启hidpi"></a>开启hidpi</h3><p><a href="https://github.com/xzhih/one-key-hidpi">one-key-hidpi</a></p>
+<h3 id="开启睿频"><a href="#开启睿频" class="headerlink" title="开启睿频"></a>开启睿频</h3><p><a href="https://github.com/stevezhengshiqi/one-key-cpufriend">one-key-cpufriend</a></p>
+<h3 id="Mac软件下载"><a href="#Mac软件下载" class="headerlink" title="Mac软件下载"></a>Mac软件下载</h3><p><a href="https://macwk.com/">MacWk - 精品mac软件下载</a></p>
+<p><a href="https://www.foxmac.com/">赤狐Mac_Mac软件免费下载</a></p>
+<p><a href="https://macdrop.net/">MacDrop</a></p>
+<h3 id="触摸板"><a href="#触摸板" class="headerlink" title="触摸板"></a>触摸板</h3><p>[VoodooI2C触摸板驱动教程 | 望海之洲 (penghubingzhou.cn)](<a href="https://www.penghubingzhou.cn/2019/01/06/VoodooI2C">https://www.penghubingzhou.cn/2019/01/06/VoodooI2C</a> DSDT Edit/)</p>
+<p><a href="https://bbs.pcbeta.com/viewthread-1797378-1-1.html">【积谷于此，以至四方】黑苹果i2c触摸驱动教程（第二版）（20190503更新六代相关）-远景论坛-微软极客社区 (pcbeta.com)</a></p>
+<p><a href="https://blog.gzxiaobai.cn/post/%E7%94%A8%E7%83%AD%E8%A1%A5%E4%B8%81%E4%BF%AE%E7%90%86%E4%BD%A0%E7%9A%84%E8%A7%A6%E6%91%B8%E6%9D%BF%EF%BC%88TouchPad-Hotpatch%EF%BC%89">用热补丁修理你的触摸板（TouchPad-Hotpatch） | 神楽小白(GZ小白)的部落阁 (gzxiaobai.cn)</a></p>
+<h3 id="一些其他工具"><a href="#一些其他工具" class="headerlink" title="一些其他工具"></a>一些其他工具</h3><p><a href="https://github.com/corpnewt/ProperTree">ProperTree</a></p>
+<p><a href="https://github.com/corpnewt/GenSMBIOS">GenSMBIOS</a></p>
+<p><a href="https://github.com/quynkk5/GenI2C">GenI2C</a></p>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><p><a href="https://github.com/poplzp/Lenovo-yoga720-Hackintoshi">Lenovo-yoga720-Hackintoshi</a></p>
+]]></content>
+      <categories>
+        <category>黑苹果</category>
+      </categories>
+      <tags>
+        <tag>黑苹果</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux Expose docker daemon</title>
+    <url>/2022/06/01/poplzp-s-posts/hexo/2022/Linux%20Expose%20docker%20daemon/</url>
+    <content><![CDATA[<h1 id="Linux-Expose-docker-daemon"><a href="#Linux-Expose-docker-daemon" class="headerlink" title="Linux Expose docker daemon"></a>Linux Expose docker daemon</h1><p>创建文件<code>/etc/docker/daemon.json</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;&#123;\n\t&quot;hosts&quot;: [&quot;tcp://0.0.0.0:2375&quot;, &quot;unix:///var/run/docker.sock&quot;]\n&#125;&#x27;</span> | sudo <span class="built_in">tee</span> /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>创建文件<code>/etc/systemd/system/docker.service.d/override.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/systemd/system/docker.service.d</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;[Service]\nExecStart=\nExecStart=/usr/bin/dockerd&quot;</span> | sudo <span class="built_in">tee</span> /etc/systemd/system/docker.service.d/override.conf</span><br></pre></td></tr></table></figure>
+
+<p>重新加载systemd daemon</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<p>重启docker daemon</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux wine使用Windows版docker</title>
+    <url>/2022/06/02/poplzp-s-posts/hexo/2022/Linux%20wine%E4%BD%BF%E7%94%A8Windows%E7%89%88docker/</url>
+    <content><![CDATA[<h1 id="Linux-wine使用Windows版docker"><a href="#Linux-wine使用Windows版docker" class="headerlink" title="Linux wine使用Windows版docker"></a>Linux wine使用Windows版docker</h1><p>wine我就不多介绍了，本篇文章主要是介绍如何在wine下使用Windows版docker。原因就是有些windows app有使用docker的需求，但是在wine下运行win版docker好像很难：win版docker desktop依赖wsl2，wine是没有wsl功能的，故此方案直接放弃；旧版的DockerToolbox呢？DockerToolbox需要安装VirtualBox，这就需要在linux下用wine运行vbox，然后再用vbox创建linux虚拟机运行boot2docker……，这个方案虽然理论可行，但是感觉很不值得，这样一套下来，又是转译又是虚拟，性能不知道要损失多少，所以这个方案我就不尝试了。有没有其他更好的方案呢？我摸索了一下，发现了另一种非常好的方案。</p>
+<span id="more"></span>
+
+<h2 id="docker-Expose-daemon"><a href="#docker-Expose-daemon" class="headerlink" title="docker Expose daemon"></a>docker Expose daemon</h2><p>docker Expose daemon功能可以将 <a href="https://docs.docker.com/engine/reference/commandline/dockerd/#description">dockerd</a> api开放到<code>hostip:2375</code>上，教程参考 <a href="https://1011.ml/2022/06/01/poplzp-s-posts/hexo/2022/Linux%20Expose%20docker%20daemon/">Linux Expose docker daemon</a> 。</p>
+<p>完成后可以通过<code>curl http://localhost:2375/version</code>测试</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/69783adf9e2da3b095d9a2bde19a3f09-image-20220602225936115.png" alt="image-20220602225936115"></p>
+<h2 id="下载安装windows版本docker"><a href="#下载安装windows版本docker" class="headerlink" title="下载安装windows版本docker"></a>下载安装windows版本docker</h2><p>前往 <a href="https://download.docker.com/win/static/stable/x86_64/">https://download.docker.com/win/static/stable/x86_64/</a> 下载最新版docker。将其解压到<code>~/.wine/drive_c/bin</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/835af379349b52f212d091527db309f0-image-20220602230723756.png" alt="image-20220602230723756"></p>
+<h2 id="配置wine的环境变量"><a href="#配置wine的环境变量" class="headerlink" title="配置wine的环境变量"></a>配置wine的环境变量</h2><p><code>wine regedit</code> 启动wine注册表编辑器，前往如下路径，这里的项目就是wine的环境变量</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/4cec17850c3b2672e441adf2ae99e0df-image-20220602230931501.png" alt="image-20220602230931501"></p>
+<p>修改PATH变量，在最后添加<code>;C:\bin</code> ，这是docker.exe存放的路径</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/d2deb4d2ee41c2d2339775d8e92a1bf3-image-20220602231151064.png" alt="image-20220602231151064"></p>
+<p>然后右键空白处选择新建==&gt;字符串项，添加<code>DOCKER_HOST</code>变量如下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/9eec3d4687e03e4c78a7363caf98dc5f-image-20220602231533322.png" alt="image-20220602231533322"></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><code>docker version</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/da80f26d9d7220539d4d07287f9dfc12-image-20220602232234340.png" alt="image-20220602232234340"></p>
+<p>新建一个容器也ok</p>
+<p><code>docker run -it --rm debian</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/42df4d424986378f80e924c0bc92c5b8-image-20220602232650824.png" alt="image-20220602232650824"></p>
+<h2 id="完善"><a href="#完善" class="headerlink" title="完善"></a>完善</h2><p>windows app调用docker时，可能会使用windows path，这样就会导致docker命令执行失败，写个c++小程序就可以解决这个问题；将原来的docker.exe更名为dockerb.exe，再将这段代码编译为docker.exe放入<code>C:\bin</code> ，然后把wine的c盘链接到根目录<code>ln -s /home/user/.wine/driver_c /c</code>。这段代码不能解决路径中含空格的问题，使用时需注意。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">ReplaceAll</span><span class="params">(string str, <span class="type">const</span> string&amp; from, <span class="type">const</span> string&amp; to)</span> </span>&#123;</span><br><span class="line">    <span class="type">size_t</span> start_pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((start_pos = str.<span class="built_in">find</span>(from, start_pos)) != string::npos) &#123;</span><br><span class="line">        str.<span class="built_in">replace</span>(start_pos, from.<span class="built_in">length</span>(), to);</span><br><span class="line">        start_pos += to.<span class="built_in">length</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    string cmd=<span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; argc; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        string s = argv[i];</span><br><span class="line">        <span class="keyword">if</span>(s == <span class="string">&quot;docker&quot;</span> | s == <span class="string">&quot;docekr.exe&quot;</span>) &#123;</span><br><span class="line">            s = <span class="string">&quot;dockerb.exe&quot;</span>;</span><br><span class="line">            cmd = s;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        s = <span class="built_in">ReplaceAll</span>(s, <span class="string">&quot;C:&quot;</span>, <span class="string">&quot;/c&quot;</span>);</span><br><span class="line">        s = <span class="built_in">ReplaceAll</span>(s, <span class="string">&quot;\\&quot;</span>, <span class="string">&quot;/&quot;</span>);</span><br><span class="line">        cmd += ( <span class="string">&quot; &quot;</span> + s );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出最后执行的docker指令，便于调试，如果不需要可以删掉</span></span><br><span class="line">    ofstream ofs;</span><br><span class="line">    ofs.<span class="built_in">open</span>(<span class="string">&quot;docker-debug&quot;</span>, ios::out);</span><br><span class="line">    ofs &lt;&lt; cmd &lt;&lt; endl;</span><br><span class="line">    ofs.<span class="built_in">close</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">system</span>(cmd.<span class="built_in">c_str</span>());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>wine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL2下使用systemd的最佳方案</title>
+    <url>/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="WSL2下使用systemd的最佳方案"><a href="#WSL2下使用systemd的最佳方案" class="headerlink" title="WSL2下使用systemd的最佳方案"></a>WSL2下使用systemd的最佳方案</h1><blockquote>
+<p>本教程基于WSL2，参考：<a href="https://wsldl-pg.github.io/ArchW-docs/Known-issues/">ArchWSL Known issues</a></p>
+</blockquote>
+<p>在<a href="https://wsldl-pg.github.io/ArchW-docs/Known-issues/">ArchWSL Known issues</a>中，有几种推荐的systemd容器，分别是“<a href="https://github.com/sorah/subsystemctl">subsystemctl</a>”, “<a href="https://github.com/arkane-systems/genie">genie</a>”, “<a href="https://github.com/nullpo-head/wsl-distrod">wsl-distrod</a>” or “<a href="https://github.com/lungothrin/bottled-shell">bottled-shell</a>”，其中我比较推荐的就是“<a href="https://github.com/nullpo-head/wsl-distrod">wsl-distrod</a>”，本教程也是基于此展开。</p>
+<span id="more"></span>
+
+<p>wsl-distrod的安装方法参考他的项目主页，发行版可以选择自己喜欢的，我推荐Ubuntu，对WSL适配比较好</p>
+<p>安装完进入系统后，就已经可以使用systemd了</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/1369f21e4e879fecb851f00b013b5069-image-20220405125139816.png" alt="image-20220405125139816"></p>
+<p>但是systemctl status –user 不能正常工作，wslg也不能使用wayland</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/e44f627376198b525bf0b5bd7a5062c4-image-20220405130803812.png" alt="image-20220405130803812"></p>
+<p>因为distrod安装的Ubuntu有一个问题，在你新建用户后，/mnt/wslg/runtime-dir的权限是属于用户ubuntu的，这个文件夹即XDG_RUNTIME_DIR其他用户无法访问，wayland程序的运行也需要访问runtime-dir，你可以直接把runtime-dir的权限改为777，虽然不符合<a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#:~:text=%24XDG_RUNTIME_DIR"><br>$XDG_DATA_HOME - XDG Base Directory Specification</a>的要求，但是这样其他用户就可以访问了，wayland也就可以正常工作。</p>
+<p>这样做用户的dbus依然不能运行，因为他要求runtime-dir 的权限必须为700。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/817df53ce61138cb9bcc6f7018278eeb-image-20220405131515704.png" alt="image-20220405131515704"></p>
+<p>为了解决这个问题，最好的思路就是把XDG_RUNTIME_DIR设置为默认的/run/user/<em>uid</em>目录（wsl2中，该变量为/mnt/wslg/runtime-dir），然后正确设置权限；</p>
+<p>首先，用<code>loginctl enable-linger $(id -u)</code>，系统会创建/run/user/<em>uid</em>目录，最后把wayland链接到该目录中（保证用户正常使用wayland）</p>
+<p>编写一个完成这些任务的脚本 <code>sudo vi /bin/update-runtime-dir</code>，并给予可执行权限 <code>sudo chmod +x /bin/update-runtime-dir</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line">ln-runtime-<span class="function"><span class="title">dir</span></span>() &#123;</span><br><span class="line">        <span class="comment"># 获取系统所有的uid</span></span><br><span class="line">        UIDS=($(awk -F: <span class="string">&#x27;&#123;if ($3 &gt;= 0) &#123;printf &quot;%s\n&quot;, $3&#125;&#125;&#x27;</span> /etc/passwd))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> <span class="variable">$&#123;UIDS[@]&#125;</span></span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                loginctl enable-linger <span class="variable">$id</span></span><br><span class="line">                <span class="built_in">ln</span> -s /mnt/wslg/runtime-dir/wayland* /run/user/<span class="variable">$id</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> :; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">sleep</span> 1;</span><br><span class="line">        <span class="built_in">chmod</span> 777 -R /mnt/wslg/runtime-dir;</span><br><span class="line">        ln-runtime-dir;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>编写一个systemd服务 <code>sudo vi /lib/systemd/system/update-runtime-dir-d.service</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Fix runtime-dir</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/bin/update-runtime-dir</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>然后启用该systemd服务 <code>sudo systemctl enable --now update-runtime-dir-d</code> </p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/9744d4b153820ea7278e3cd02bbd3b3d-image-20220405133903583.png" alt="image-20220405133903583"></p>
+<p>修改 <code>~/.bashrc</code>，如果是zsh则修改 <code>~/.zshrc</code> ， 在最后添加 <code>export XDG_RUNTIME_DIR=&quot;/run/user/$(id $USER -u)&quot;</code></p>
+<p>执行 <code> wsl -t Distrod</code>终止该发行版，然后执行 <code>wsl -d Distrod</code>运行</p>
+<p>这时就可以使用 <code>systemctl status --user</code>了</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/421c2e0efd7e9796f33b491c87aff4c8-image-20220405140416224.png" alt="image-20220405140416224"></p>
+]]></content>
+      <categories>
+        <category>wsl2</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7安装docker</title>
+    <url>/2022/06/01/poplzp-s-posts/hexo/2022/centos7%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<h1 id="centos7安装docker"><a href="#centos7安装docker" class="headerlink" title="centos7安装docker"></a>centos7安装docker</h1><blockquote>
+<p><a href="https://www.runoob.com/docker/centos-docker-install.html">CentOS Docker 安装 | 菜鸟教程 (runoob.com)</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h3><p>较旧的 Docker 版本称为 docker 或 docker-engine 。如果已安装这些程序，请卸载它们以及相关的依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine  </span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-Docker-Engine-Community"><a href="#安装-Docker-Engine-Community" class="headerlink" title="安装 Docker Engine-Community"></a>安装 Docker Engine-Community</h3><h3 id="使用-Docker-仓库进行安装"><a href="#使用-Docker-仓库进行安装" class="headerlink" title="使用 Docker 仓库进行安装"></a>使用 Docker 仓库进行安装</h3><p>在新主机上首次安装 Docker Engine-Community 之前，需要设置 Docker 仓库。之后，您可以从仓库安装和更新 Docker。</p>
+<p><strong>设置仓库</strong></p>
+<p>安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum install -y yum-utils \</span><br><span class="line">  device-mapper-persistent-data \ </span><br><span class="line">  lvm2  </span><br></pre></td></tr></table></figure>
+
+<p>使用以下命令来设置稳定的仓库。</p>
+<h2 id="使用官方源地址（比较慢）"><a href="#使用官方源地址（比较慢）" class="headerlink" title="使用官方源地址（比较慢）"></a>使用官方源地址（比较慢）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo  </span><br></pre></td></tr></table></figure>
+
+<p>可以选择国内的一些源地址：</p>
+<h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  </span><br></pre></td></tr></table></figure>
+
+<h2 id="清华大学源"><a href="#清华大学源" class="headerlink" title="清华大学源"></a>清华大学源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo  </span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-Docker-Engine-Community-1"><a href="#安装-Docker-Engine-Community-1" class="headerlink" title="安装 Docker Engine-Community"></a>安装 Docker Engine-Community</h3><p>安装最新版本的 Docker Engine-Community 和 containerd，或者转到下一步安装特定版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum install -y docker-ce  docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<p>如果提示您接受 GPG 密钥，请选是。</p>
+<blockquote>
+<p><strong>有多个 Docker 仓库吗？</strong></p>
+<p>如果启用了多个 Docker 仓库，则在未在 yum install 或 yum update 命令中指定版本的情况下，进行的安装或更新将始终安装最高版本，这可能不适合您的稳定性需求。</p>
+</blockquote>
+<p>Docker 安装完默认未启动。并且已经创建好 docker 用户组，但该用户组下没有用户。</p>
+<p><strong>要安装特定版本的 Docker Engine-Community，请在存储库中列出可用版本，然后选择并安装：</strong></p>
+<p>1、列出并排序您存储库中可用的版本。此示例按版本号（从高到低）对结果进行排序。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum list docker-ce --showduplicates | <span class="built_in">sort</span> -r</span><br><span class="line"></span><br><span class="line">docker-ce.x86_64  3:18.09.1-3.el7                     docker-ce-stable  </span><br><span class="line">docker-ce.x86_64  3:18.09.0-3.el7                     docker-ce-stable  </span><br><span class="line">docker-ce.x86_64  18.06.1.ce-3.el7                    docker-ce-stable  </span><br><span class="line">docker-ce.x86_64  18.06.0.ce-3.el7                    docker-ce-stable</span><br></pre></td></tr></table></figure>
+
+<p>2、通过其完整的软件包名称安装特定版本，该软件包名称是软件包名称（docker-ce）加上版本字符串（第二列），从第一个冒号（:）一直到第一个连字符，并用连字符（-）分隔。例如：docker-ce-18.09.1。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum install docker-ce-&lt;VERSION_STRING&gt; docker-ce-cli-&lt;VERSION_STRING&gt; containerd.io</span><br></pre></td></tr></table></figure>
+
+<p>启动 Docker。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<p>通过运行 hello-world 映像来验证是否正确安装了 Docker Engine-Community 。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<h3 id="卸载-docker"><a href="#卸载-docker" class="headerlink" title="卸载 docker"></a>卸载 docker</h3><p>删除安装包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum remove docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>删除镜像、容器、配置文件等内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>debian安装mysql以及一些基本的配置</title>
+    <url>/2022/04/13/poplzp-s-posts/hexo/2022/debian%E5%AE%89%E8%A3%85mysql%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="debian安装mysql以及一些基本的配置"><a href="#debian安装mysql以及一些基本的配置" class="headerlink" title="debian安装mysql以及一些基本的配置"></a>debian安装mysql以及一些基本的配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前往mysql官网，下载mysql apt源配置程序<a href="https://dev.mysql.com/downloads/repo/apt/">MySQL :: Download MySQL APT Repository</a> ，使用<code>dkpg -i </code> 安装。然后使用<code>apt update</code> 更新源，最后使用<code>apt install mysql-server</code>安装即可。</p>
+<span id="more"></span>
+
+<h2 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h2><p>debian环境下，mysql的配置目录在<code>/etc/mysql/mysql.conf.d</code> 下，通过<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code> 编辑mysqld守护进程的配置。</p>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment"># 修改默认端口</span></span><br><span class="line">port            = 3310</span><br></pre></td></tr></table></figure>
+
+<p><em>更多mysql系统变量请参考<a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_datadir">MySQL :: MySQL 8.0 Reference Manual :: 5.1.8 Server System Variables</a></em></p>
+<h2 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h2><p>mysql没有初始root密码，可以直接终端输入mysql进入数据库。</p>
+<p>要设置root密码，可以在 <strong>终端</strong> 执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqladmin -uroot password <span class="string">&#x27;password&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p>如果要修改root密码，在 <strong>终端</strong> 执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqladmin -uroot -p<span class="string">&#x27;oldpassword&#x27;</span> password <span class="string">&#x27;newpassword&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="mysql用户增删改查"><a href="#mysql用户增删改查" class="headerlink" title="mysql用户增删改查"></a>mysql用户增删改查</h2><h3 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h3><p>新建一个名为test，密码为test的用户，<code>@&#39;localhost&#39;</code> 指该用户只能通过本地网络访问；</p>
+<p>如果指定ip，则把<code>localhost </code> 改为*<code>ip</code>*，多个ip的话就多执行几次，ip分别修改为指定的某几个ip；</p>
+<p>如果允许其通过任何ip访问，则把<code>localhost </code> 改为<code>% </code> ，%代表通配符，也可以设置<code>192.168.0.%</code> 允许来自192.168.0.1~192.168.0.255的ip进行访问</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;test&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;test&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop user test@localhost;</span><br><span class="line">drop user test@&#x27;%&#x27;;</span><br><span class="line">drop user test@&#x27;ip&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更改密码"><a href="#更改密码" class="headerlink" title="更改密码"></a>更改密码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;test&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">with</span> caching_sha2_password <span class="keyword">by</span> <span class="string">&#x27;newpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> grants <span class="keyword">for</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><p>授予用户test通过外网IP对数据库“testdb”的全部权限</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> <span class="string">&#x27;testdb&#x27;</span>.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;test&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line"># 刷新权限</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker运行nextcloud</title>
+    <url>/2022/04/30/poplzp-s-posts/hexo/2022/docker%E8%BF%90%E8%A1%8Cnextcloud/</url>
+    <content><![CDATA[<h1 id="docker运行nextcloud"><a href="#docker运行nextcloud" class="headerlink" title="docker运行nextcloud"></a>docker运行nextcloud</h1><p>一直感觉家里每个设备之间传递文件很不方便，有时候为了从手机传一张图片到电脑，不得不在电脑上登录qq或微信；我很不喜欢电脑挂着qq或微信，原因基本上就是：1、有消息一直闪的很烦；2、不经常使用，挂在后台占用电脑内存，给电脑增加了很多负担。因此我一直想着有没有什么更好的办法解决这个问题。</p>
+<p>最终决定要解决这个问题是因为有一天我需要在手机上修改一张图片然后在电脑上用，手机改完用qq发到电脑，电脑使用后感觉效果不满意，然后又要手机修改然后再发到电脑。几次下来后觉得是时候解决一下这个问题了；想到家里还有一个闲置的平板，就有了把平板改为云盘的想法。</p>
+<span id="more"></span>
+
+<p>说做就做！</p>
+<p>把平板改为云盘，给平板装上linux应该是最好的，我的平板是联想的miix28，这是一款老平板了，我试着装ubuntu，居然装不上，几个lts版本都栽在了安装grub这一步，archlinux也是如此。难道我的计划刚开始就要泡汤了吗？</p>
+<p>还好！最后试了fedora成功安装了，并且十分完美。然后就是一些对新系统的简单配置，主要就是：换源、安装docker、关闭selinux。</p>
+<h2 id="步入正题"><a href="#步入正题" class="headerlink" title="步入正题"></a>步入正题</h2><h3 id="安装nextcloud"><a href="#安装nextcloud" class="headerlink" title="安装nextcloud"></a>安装nextcloud</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nextcloud</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/62dd93d539182601bf119072db2999bb-image-20220430213056604.png" alt="image-20220430213056604"></p>
+<h3 id="安装postgres"><a href="#安装postgres" class="headerlink" title="安装postgres"></a>安装postgres</h3><p>我选择了postgres作为nextcloud的数据库，nextcloud提供了三种数据库可供选择，你可以选择其他数据库</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/ffbbccd17f93265808afc31b005ecad3-image-20220430223719847.png" alt="image-20220430223719847"></p>
+<h4 id="新建postgres容器，新建数据库和用户"><a href="#新建postgres容器，新建数据库和用户" class="headerlink" title="新建postgres容器，新建数据库和用户"></a>新建postgres容器，新建数据库和用户</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name postgres-nc  --restart=always -v /data/postgres-nc:/var/lib/postgresql/data -p 5433:5432 -e POSTGRES_PASSWORD=password postgres</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it postgres-nc /bin/bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">su postgres</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">createuser -P -s -e nextcloud</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">psql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database nextcloud owner<span class="operator">=</span>nextcloud;</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建nextcloud容器"><a href="#新建nextcloud容器" class="headerlink" title="新建nextcloud容器"></a>新建nextcloud容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name nextcloud --restart=always -p 8080:80 -v /data/nextcloud:/var/www/html/ nextcloud</span><br></pre></td></tr></table></figure>
+
+<p>完成后就可以通过<code>ip:8080</code> 访问到了，这里配置一下，注意数据库ip要填写宿主机ip，查看容器内宿主机ip的指令如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect nextcloud --format &#123;&#123;.NetworkSettings.Gateway&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/30caee285b8b834bbb8f05afcc087046-image-20220430223513296.png" alt="image-20220430223513296"></p>
+<p>接下来就是点击安装等待安装完成即可</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/a38730a809ef1c3ebd55855d826f9cbd-image-20220501102416302.png" alt="image-20220501102416302"></p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nextcloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux搭建PiNode</title>
+    <url>/2022/05/20/poplzp-s-posts/hexo/2022/linux%E6%90%AD%E5%BB%BAPiNode/</url>
+    <content><![CDATA[<h1 id="Linux搭建PiNode"><a href="#Linux搭建PiNode" class="headerlink" title="Linux搭建PiNode"></a>Linux搭建PiNode</h1><h2 id="端口测试容器"><a href="#端口测试容器" class="headerlink" title="端口测试容器"></a>端口测试容器</h2><p>等待ping通后按ctrl+c退出，然后下一步</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name stellar-dummy -it --<span class="built_in">rm</span> -p 31400-31410:31400-31410 -e PORTS=31400,31401,31402,31403,31404,31405,31406,31407,31408,31409 ese7en/node-port-test:latest</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="pinode节点容器"><a href="#pinode节点容器" class="headerlink" title="pinode节点容器"></a>pinode节点容器</h2><p>docker inspect</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POSTGRES_PASSWORD</td>
+<td>e6Knf2usKtNDVeCB9N0U</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</td>
+</tr>
+<tr>
+<td>STELLAR_CORE_VERSION</td>
+<td>15.2.0-440.54b03f7.xenial</td>
+</tr>
+<tr>
+<td>HORIZON_VERSION</td>
+<td>1.13.1-94</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Mounts</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/VAR/LOG/SUPERVISOR</td>
+<td>C:\Users\eavel\AppData\Roaming\Pi Network\docker_volumes\supervisor_logs</td>
+</tr>
+<tr>
+<td>/HISTORY</td>
+<td>C:\Users\eavel\AppData\Roaming\Pi  Network\docker_volumes\history</td>
+</tr>
+<tr>
+<td>/OPT/STELLAR</td>
+<td>C:\Users\eavel\AppData\Roaming\Pi  Network\docker_volumes\stellar</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Ports</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1570/tcp</td>
+<td>0.0.0.0:31403</td>
+</tr>
+<tr>
+<td>31402/tcp</td>
+<td>0.0.0.0:31402</td>
+</tr>
+<tr>
+<td>5432/tcp</td>
+<td>Not bound</td>
+</tr>
+<tr>
+<td>8000/tcp</td>
+<td>0.0.0.0:31401</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>参考</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name pi-consensus -p 1570:31403 -p 31402:31402 -p 8000:31401 -v /data/pinode/stellar:/opt/stellar -v /data/pinode/supervisor_logs:/var/log/supervisor -v /data/pinode/history:/history pinetwork/pi-node-docker:latest</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PIVOL_PATH=<span class="string">&quot;/c/Users/fxuser/AppData/Roaming/Pi Network/docker_volumes&quot;</span>; docker run -d --name pi-consensus -p 1570:31403 -p 31402:31402 -p 8000:31401 -e POSTGRES_PASSWORD=e6Knf2usKtNDVeCB9N0U -e STELLAR_CORE_VERSION=15.2.0-440.54b03f7.xenial -e HORIZON_VERSION=1.13.1-94 -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/stellar:/opt/stellar&quot;</span> -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/supervisor_logs:/var/log/supervisor&quot;</span> -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/history:/history&quot;</span> pinetwork/pi-node-docker:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="For-test"><a href="#For-test" class="headerlink" title="For test"></a>For test</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker container <span class="built_in">rm</span> pi-consensus;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker container <span class="built_in">rm</span> pi-consensus; <span class="built_in">export</span> PIVOL_PATH=<span class="string">&quot;/c/Users/fxuser/AppData/Roaming/Pi Network/docker_volumes&quot;</span>; docker run -it --name pi-consensus -p 1570:31403 -p 31402:31402 -p 8000:31401 -e POSTGRES_PASSWORD=e6Knf2usKtNDVeCB9N0U -e STELLAR_CORE_VERSION=15.2.0-440.54b03f7.xenial -e HORIZON_VERSION=1.13.1-94 -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/stellar:/opt/stellar&quot;</span> -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/supervisor_logs:/var/log/supervisor&quot;</span> -v <span class="string">&quot;<span class="variable">$PIVOL_PATH</span>/history:/history&quot;</span> pinetwork/pi-node-docker:latest</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>pinode</category>
+      </categories>
+      <tags>
+        <tag>pinode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络</title>
+    <url>/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0windows%E4%B8%BB%E6%9C%BA%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEWSL2%E4%B8%ADdocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h1 id="使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络"><a href="#使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络" class="headerlink" title="使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络"></a>使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络</h1><p>wsl2中的网络映射到了localhost，也就是说在win上可以使用localhost:port访问到wsl2上的端口。但是wsl2中docker却存在问题，不能通过主机直接访问使用bridge桥接网络的容器内网ip，必须用docker映射端口后访问，这并非bug，因为wls2实质为虚拟机，不过这多少有些不便。如果容器使用host网络就没有这些问题了，可以直接通过localhost:port访问容器内端口。</p>
+<p>但是使用bridge网络并且没有映射端口的容器该怎么解决呢？下面就展示一种使用nginx反向代理实现主机直接访问WSL2中docker容器bridge网络的方法。</p>
+<span id="more"></span>
+
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>首先在wsl2安装nginx</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，你就应该能通过<a href="http://127.0.0.1/">http://127.0.0.1/</a> 访问到nginx欢迎页了</p>
+<p>如果你的wsl2已经启用了systemd，也可以通过<code>systemctl status nginx</code>查看nginx服务状态</p>
+<p><em>启用systemd的方法可参考我的另一篇文章<a href="/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/">WSL2下使用systemd的最佳方案 </a></em></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/acfc875c2e99d9fe6ad30680b8a292ef-image-20220405184952356.png" alt="image-20220405184952356"></p>
+<p>nginx如果正常运行，就可以进行下一步，编写nginx配置<code>sudo vim /etc/nginx/sites-available/rp_server.conf</code>，我这里设置的监听端口是801，可以自定义</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 801;</span><br><span class="line">        location / &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$request_uri</span> ~ <span class="string">&quot;/(.*)&quot;</span>)&#123;</span><br><span class="line">                        proxy_pass <span class="variable">$1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启用配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /etc/nginx/sites-available/rp_server.conf /etc/nginx/sites-enabled/rp_server.conf</span><br></pre></td></tr></table></figure>
+
+<p>重启nginx服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+<p>完成！</p>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p>我的portainer容器用docker映射了9000端口，可以通过<a href="http://127.0.0.1:9000/">http://127.0.0.1:9000/</a> 访问</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/f59307cf9a17636e0bf5890ea6209c8e-image-20220405185936051.png" alt="image-20220405185936051"></p>
+<p>上图可以看到，我的portainer容器内网ip为<strong>172.17.0.2</strong>，使用nginx反代，我通过<a href="http://127.0.0.1:801/http://172.17.0.2:9000/">http://127.0.0.1:801/http://172.17.0.2:9000/</a> 也可以访问到portainer</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/74ded1f7fbcd23ea08171f165194201c-image-20220405190156995.png" alt="image-20220405190156995"></p>
+<p>不映射端口启动一个python容器，启动一个http server</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/2f7ecfa8fe3dac0eca24c7be16ae16cf-image-20220405192656071.png" alt="image-20220405192656071"></p>
+<p>docker inspect查看到该容器ip为172.17.0.3，就可以通过nginx反代访问到该ip</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/265d900c0aabcbf67364d5305bda1b8a-image-20220405192931499.png" alt="image-20220405192931499"></p>
+]]></content>
+      <categories>
+        <category>wsl2</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用windows计划任务实现wsl2开机自启，并且保持运行</title>
+    <url>/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/</url>
+    <content><![CDATA[<h1 id="使用windows计划任务实现wsl2开机自启，并且保持运行"><a href="#使用windows计划任务实现wsl2开机自启，并且保持运行" class="headerlink" title="使用windows计划任务实现wsl2开机自启，并且保持运行"></a>使用windows计划任务实现wsl2开机自启，并且保持运行</h1><p>wsl2启动速度比wsl1慢了很多，因此我过去一直都是使用wsl1，但是wsl1对docker的支持不太好，只有旧版能正常运行，参考<a href="https://www.jianshu.com/p/20ebdbf68744">WSL 中 Docker 使用总结 - 简书 (jianshu.com)</a> ，wsl2速度慢准确来说应该是启动速度慢，wsl中的发行版在一段时间不使用后就会停止，再进入wsl就会有一个启动过程，这里wsl2比wsl1要慢很多。</p>
+<span id="more"></span>
+
+<p>知道了导致wsl2速度慢的原因了，怎么解决呢？</p>
+<p>首先，想到的是让wsl2开机运行，这样也能减少第一次启动花费的时间，实现开机运行程序的一个比较好的方法就是windows计划任务，直接启动wsl是不行的，会弹出来一个终端窗口，最小化也还是在任务栏里，这样和开机手动启动一个终端进去wsl2然后最小化不久没区别了？解决这个问题，powershell是个很好的答案，我推荐最新的powershell7，速度更快，功能更强大。powershell有一个参数，可以设置窗口模式，其中Hidden就是隐藏窗口执行，并且不会在任务栏显示，相当于后台执行。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/0bda0efa97305dc9d16225d34576a3f4-image-20220405220745353.png" alt="image-20220405220745353"></p>
+<p>有了这些，我们就可以编写计划任务 了</p>
+<p>右键此电脑，点击管理，选择计划任务，然后点击创建任务</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/cf363989523d356be57e7fa2283a63ca-image-20220405221107306.png" alt="image-20220405221107306"></p>
+<p><strong>常规</strong> 设置如下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/507d1d8e283d38a23e02624a9d5a95c0-image-20220405221201513.png" alt="image-20220405221201513"></p>
+<p><strong>触发器</strong> 新建一个登录时的触发器</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/f59ed85544f0db785d82c21318672186-image-20220405221259648.png" alt="image-20220405221259648"></p>
+<p><strong>操作</strong> 新建一个启动程序的操作，程序填<code>pwsh.exe</code>（没有安装powershell7的话填powershell.exe），参数填</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="literal">-WindowStyle</span> <span class="keyword">Hidden</span> <span class="literal">-Command</span> <span class="string">&quot;while(1)&#123;wsl -d Distrod-Ubuntu -e /opt/distrod/alias/bin/bash&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/db492c61bcfc685c61f8b47817101aa0-image-20220405221347192.png" alt="image-20220405221347192"></p>
+<p>其中Distrod-Ubuntu改为你想要开机自启并保持运行的wsl容器，如果你安装的不是带systemd的distrod，-e后面的内容则改为<code>/usr/bin/bash</code> </p>
+<p><em>参考文章 <a href="/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/">WSL2下使用systemd的最佳方案 </a>了解 wsl-distrod</em></p>
+<p>如果需要wsl2开机自动挂载vhd虚拟硬盘文件，首先要安装wsl preview - <a href="https://www.microsoft.com/en-us/p/windows-subsystem-for-linux-preview/9p9tqf7mrm4r">Get Windows Subsystem for Linux Preview - Microsoft Store</a> ，该功能只有wsl preview支持，然后将参数设置为</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="literal">-WindowStyle</span> <span class="keyword">Hidden</span> <span class="literal">-Command</span> <span class="string">&quot;wsl --shutdown; while(1)&#123;wsl --mount --vhd D:\WSL\DISKS\disk-128g-01.vhdx --bare; wsl -d Distrod-Ubuntu -e /opt/distrod/alias/bin/bash&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中vhd文件路径和wsl容器名称要改为你自己的</p>
+<p><strong>条件</strong> 把这里的勾都去掉</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/37c245c620b26dadd67c52b3baeec95e-image-20220405222115677.png" alt="image-20220405222115677"></p>
+<p>其他的设置就可以保持默认，点击确定保存后，wsl2就可以实现开机自启并保持运行了</p>
+]]></content>
+      <categories>
+        <category>wsl2</category>
+      </categories>
+      <tags>
+        <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>修改 WSL2 容器的位置</title>
+    <url>/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BF%AE%E6%94%B9%20WSL2%20%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="修改-WSL2-容器的位置"><a href="#修改-WSL2-容器的位置" class="headerlink" title="修改 WSL2 容器的位置"></a>修改 WSL2 容器的位置</h1><p>默认情况WSL2 容器可能在C盘上，时间久了文件可以越来越大，占用很多C盘分区，于是最好把它挪到其他空间更大，更好管理的硬盘或分区上，下面介绍一种移动wsl2容器位置的方法</p>
+<span id="more"></span>
+
+<p>在powershell中使用<code>wsl -l -v</code>查看所有容器，确定你想移动的wsl2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/pypicgo/6266d520069204e62d276d88651b994f-image-20220405223538232.png" alt="image-20220405223538232"></p>
+<p>使用wsl –shutdown关闭wsl所有容器，或wsl -t <em>name</em> 终止你要移动的容器</p>
+<p>打开windows注册表，打开路径</p>
+<p><code>计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss</code></p>
+<p>其中的每一个项就是你的一个容器，可以通过项的 <strong>DistributionName</strong> 确定你要移动的容器，其中 <strong>BasePath</strong> 就是容器文件保存的路径，你可以通过该路径找到容器文件，把他移动到其他地方，然后把 <strong>BasePath</strong> 修改为你移动后存放容器文件的文件夹即可，比如<code>D:\WSL\Distrod-Ubuntu</code>，然后就完成了。</p>
+<p>你也可以修改该项中的其他值来修改wsl2容器的信息，比如 <strong>DefaultUid</strong> - 默认用户id， <strong>DistributionName</strong> - 容器名称</p>
+]]></content>
+      <categories>
+        <category>wsl2</category>
+      </categories>
+      <tags>
+        <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>更改Windows上cmd的默认编码为UTF-8</title>
+    <url>/2022/04/29/poplzp-s-posts/hexo/2022/%E6%9B%B4%E6%94%B9Windows%E4%B8%8Acmd%E7%9A%84%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81%E4%B8%BAUTF-8/</url>
+    <content><![CDATA[<h1 id="更改Windows上cmd的默认编码为UTF-8"><a href="#更改Windows上cmd的默认编码为UTF-8" class="headerlink" title="更改Windows上cmd的默认编码为UTF-8"></a>更改Windows上cmd的默认编码为UTF-8</h1><p>在Windows上，大部分应用的编码格式都已经统一为utf-8，utf-8也已经是我们常用的字符编码，但是我使用cmd时，却发现cmd的编码格式还是gbk，导致cmd运行程序时经常会出现乱码，怎么修改cmd默认编码格式呢？</p>
+<span id="more"></span>
+
+<p>搜了一下解决方案，大致有以下几种：</p>
+<ol>
+<li><p>cmd启动时自动运行指令<code>chcp 65001</code></p>
+<p>打开注册表并前往地址：HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor，然后“右键-新建”，选择“字符串值”，“名称”列填写“autorun”, 数值数据填写“chcp 65001”。</p>
+</li>
+<li><p>启用系统utf-8支持</p>
+<p>这是我采用的方法，这个方法是官方提供的方法，感觉会更为安全。步骤如下：</p>
+<p>打开设置 ==&gt; 时间与语言 ==&gt; 语言与区域 ==&gt; 管理语言设置 ==&gt; 更改系统区域设置</p>
+<p>这时能看到下方有一个 <code>Beta版：使用Unicode UTF-8...</code> 的选框，勾选上然后确定，重启就可以了。</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/poplzp/savings/main/imgs/pypicgo/74a2f5510880f1a7e40c1d66bd129948-74a2f5510880f1a7e40c1d66bd129948-image-20220429101909907.png" alt="74a2f5510880f1a7e40c1d66bd129948-image-20220429101909907"></p>
+]]></content>
+      <categories>
+        <category>windows</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Windows下python2报错&quot;LookupError:unknown encoding:cp65001&quot;</title>
+    <url>/2022/04/24/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3Windows%E4%B8%8Bpython2%E6%8A%A5%E9%94%99LookupError%20unknown%20encoding%20cp65001/</url>
+    <content><![CDATA[<h1 id="解决Windows下python2报错”LookupError-unknown-encoding-cp65001”"><a href="#解决Windows下python2报错”LookupError-unknown-encoding-cp65001”" class="headerlink" title="解决Windows下python2报错”LookupError: unknown encoding: cp65001”"></a>解决Windows下python2报错”LookupError: unknown encoding: cp65001”</h1><p>我是使用scoop安装的python2，版本如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python2 -V</span><br><span class="line">Python 2.7.18</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>在执行命令<code>python2 -m ensurepip</code> 时，报了一大串错误，抛出的异常如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">  File &quot;c:\users\eavel\appdata\local\temp\tmpg4lsci\pip-19.2.3-py2.py3-none-any.whl\pip\_internal\utils\ui.py&quot;, line 53, in _select_progress_class</span><br><span class="line">LookupError: unknown encoding: cp65001  </span><br></pre></td></tr></table></figure>
+
+<p>网上查了一下解决方案，基本上就是两种：</p>
+<ul>
+<li><p>设置环境变量<code>PYTHONIOENCODING=UTF-8</code></p>
+<p>Windows下设置变量<code> $env:PYTHONIOENCODING=&quot;UTF-8&quot;</code> ，这个方案对我的情况可行，但是安装包时进度条会乱码，而且这样每次使用python2之前都要确保设置了这个环境变量，略显麻烦。</p>
+</li>
+<li><p>安装包<code>pip install win-unicode-console</code> </p>
+<p>该方案对我无效…</p>
+</li>
+</ul>
+<p>有没有什么更好的解决方案呢？答案是有的。</p>
+<p>这个问题本质上python2无法识别字符编码<code>cp65001</code>，而这个编码正是我们常用的<code>utf-8</code>，python2是可以识别<code>utf-8</code>的，那为什么还报错呢？因为python2的编码字典里没有<code>cp65001</code>的键值，这个文件位于<code>$PYTHONHOME/Lib/encodings/aliases.py</code> ，我们可以手动添加</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="comment"># utf_8 codec</span></span><br><span class="line">    <span class="string">&#x27;u8&#x27;</span>                 : <span class="string">&#x27;utf_8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;utf&#x27;</span>                : <span class="string">&#x27;utf_8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;utf8&#x27;</span>               : <span class="string">&#x27;utf_8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;utf8_ucs2&#x27;</span>          : <span class="string">&#x27;utf_8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;utf8_ucs4&#x27;</span>          : <span class="string">&#x27;utf_8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;cp65001&#x27;</span>            : <span class="string">&#x27;utf_8&#x27;</span>, <span class="comment"># 添加cp65001</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这样问题就解决了</p>
+]]></content>
+      <categories>
+        <category>python2</category>
+      </categories>
+      <tags>
+        <tag>python2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决idea不能使用Gnome全局菜单插件Fildem的BUG</title>
+    <url>/2022/01/25/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3idea%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8Gnome%E5%85%A8%E5%B1%80%E8%8F%9C%E5%8D%95%E6%8F%92%E4%BB%B6Fildem%E7%9A%84BUG/</url>
+    <content><![CDATA[<h1 id="解决idea不能使用Gnome全局菜单插件Fildem的BUG"><a href="#解决idea不能使用Gnome全局菜单插件Fildem的BUG" class="headerlink" title="解决idea不能使用Gnome全局菜单插件Fildem的BUG"></a>解决idea不能使用Gnome全局菜单插件Fildem的BUG</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开始之前，我必须先发发牢骚，这真是个神奇的bug，fildem在其他软件下都很好用，唯独idea家族软件（比如clion，intellij）下就有这个bug，用着也是比较难受，刚开始我是配合idea下的一个插件<a href="https://plugins.jetbrains.com/plugin/7297-main-menu-toggler">Main Menu toggler</a> 打开原始顶部菜单来使用的，但是这就出现了双层菜单（话说上面的不能用就别显示啊，这样看着更加难受😭）</p>
+<span id="more"></span>
+
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/save-imgs/imgs/bc86311a8ff346ba0e7fbc6f6743fdff-20220125171609-image-20220125171608792.png" alt="image-20220125171608792"></p>
+<p><em><strong>（双层菜单）</strong></em></p>
+<p><img src="https://fastly.jsdelivr.net/gh/poplzp/save-imgs/imgs/22843b102c916bc40f88bbe206e4015e-20220125172619-image-20220125172618944.png" alt="image-20220125172618944"></p>
+<p>双层菜单用着实在不爽，于是我搜了一圈解决方案，都不太好用（只能自己研究解决方案了）</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>去<a href="https://github.com/gonzaarcr/Fildem">Github - Fildem</a> fork了一份代码，作者已经在上一个release版本后提交了很多代码，我有点小激动，这个bug是不是已经被修复了呢？我赶紧把源代码的版本安装上试了试，结果很失望，bug依然存在，而且更失望的是，源代码使用treelib库存放菜单元素，导致基于gtk的软件没有全局菜单了（由于重复键值的存在），本来是正常使用的。我把代码回退到作者添加treelib库之前</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard 853a367cdc0337b2ddcc5d5a39028b64079571e6 </span><br></pre></td></tr></table></figure>
+
+<p>就正常了，然后解决idea的问题，修改一下代码解决<a href="https://github.com/gonzaarcr/Fildem/issues/108#">issues#108 Crash after click on PHPStorm navbar</a> , idea系列都会有这个问题</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># fildem/handlers/global_menu.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_menu</span>(<span class="params">self, menus</span>):</span><br><span class="line">    self.destroy_menus()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(menus) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">++  <span class="keyword">if</span> <span class="built_in">len</span>(menus[<span class="number">0</span>].path) == <span class="number">0</span>:</span><br><span class="line">++      <span class="keyword">return</span></span><br><span class="line">    current_prefix = menus[<span class="number">0</span>].path[<span class="number">0</span>]</span><br><span class="line">    current_menu = []</span><br></pre></td></tr></table></figure>
+
+<p>加上上面的补丁后，我运行了一下fildem源代码程序，然后打开clion，等待加载完成后菜单居然正常了，我一阵狂喜，这个曾让我头大的问题居然就这么解决了？我把原先的fildem卸载然后安装我修改后的，然后重启电脑，再打开clion，发现全局菜单又失灵了。我真的纳闷了，明明之前运行没问题呀，我又打开源代码再次运行了一边，打开clion，菜单又好了！</p>
+<h3 id="最终解决方案"><a href="#最终解决方案" class="headerlink" title="最终解决方案"></a>最终解决方案</h3><p>我反复折腾了好几遍，结果都和上面一样，最终我发现只要同时运行两个fildem进程（他们是可以共存的），idea系软件的全局菜单就可以正常工作（要按照上面的修改代码），是不是很奇怪！我暂时也不能深入研究原因，反正能用就行😂</p>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><p>可以直接clone我修改好的GitHub - <a href="https://github.com/poplzp/Fildem">Fildem</a>安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 卸载原有版本</span></span><br><span class="line">sudo pip uninstall fildem         </span><br><span class="line"><span class="comment"># 进入clone后的代码根目录，安装我修改的版本</span></span><br><span class="line">sudo python3 setup.py install --optimize=1   </span><br><span class="line"><span class="comment"># 复制一个fildem开机自启动项目，开机启动两个fildem进程</span></span><br><span class="line"><span class="built_in">cp</span> ~/.config/autostart/fildem.desktop ~/.config/autostart/fildem2.desktop </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><p><a href="https://www.linuxuprising.com/2021/02/how-to-install-fildem-global-menu-and.html#">https://www.linuxuprising.com/2021/02/how-to-install-fildem-global-menu-and.html#</a></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+</search>

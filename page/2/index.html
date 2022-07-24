@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> POPLZP 的博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://fastly.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="POPLZP 的博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <!--  -->
+
+
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/poplzp/poplzp.github.io"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img id="bg-img" src="/images/cover3.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">POPLZP 的博客</a></h1>
+      <div id="subtitle-box">
+        
+          <span id="subtitle">POPLZP&#39;s Blog</span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+
+<!-- Subtitle -->
+
+
+<script>
+  const appHeight = () => {
+    const bg = document.getElementById("bg-img");
+    bg.style.height = `${window.innerHeight}px`;
+  }
+  window.addEventListener('resize', appHeight)
+  appHeight()
+</script>
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的网络"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0windows%E4%B8%BB%E6%9C%BA%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEWSL2%E4%B8%ADdocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time datetime="2022-04-05T18:30:54.000Z" itemprop="datePublished">2022-04-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl2/">wsl2</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0windows%E4%B8%BB%E6%9C%BA%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEWSL2%E4%B8%ADdocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络"><a href="#使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络" class="headerlink" title="使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络"></a>使用nginx反向代理，实现windows主机直接访问WSL2中docker容器的bridge网络</h1><p>wsl2中的网络映射到了localhost，也就是说在win上可以使用localhost:port访问到wsl2上的端口。但是wsl2中docker却存在问题，不能通过主机直接访问使用bridge桥接网络的容器内网ip，必须用docker映射端口后访问，这并非bug，因为wls2实质为虚拟机，不过这多少有些不便。如果容器使用host网络就没有这些问题了，可以直接通过localhost:port访问容器内端口。</p>
+<p>但是使用bridge网络并且没有映射端口的容器该怎么解决呢？下面就展示一种使用nginx反向代理实现主机直接访问WSL2中docker容器bridge网络的方法。</p> 
+      <a class="article-more-link" href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0windows%E4%B8%BB%E6%9C%BA%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEWSL2%E4%B8%ADdocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/WSL2下使用systemd的最佳方案"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2022-04-05T12:10:31.000Z" itemprop="datePublished">2022-04-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl2/">wsl2</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="WSL2下使用systemd的最佳方案"><a href="#WSL2下使用systemd的最佳方案" class="headerlink" title="WSL2下使用systemd的最佳方案"></a>WSL2下使用systemd的最佳方案</h1><blockquote>
+<p>本教程基于WSL2，参考：<a target="_blank" rel="noopener" href="https://wsldl-pg.github.io/ArchW-docs/Known-issues/">ArchWSL Known issues</a></p>
+</blockquote>
+<p>在<a target="_blank" rel="noopener" href="https://wsldl-pg.github.io/ArchW-docs/Known-issues/">ArchWSL Known issues</a>中，有几种推荐的systemd容器，分别是“<a target="_blank" rel="noopener" href="https://github.com/sorah/subsystemctl">subsystemctl</a>”, “<a target="_blank" rel="noopener" href="https://github.com/arkane-systems/genie">genie</a>”, “<a target="_blank" rel="noopener" href="https://github.com/nullpo-head/wsl-distrod">wsl-distrod</a>” or “<a target="_blank" rel="noopener" href="https://github.com/lungothrin/bottled-shell">bottled-shell</a>”，其中我比较推荐的就是“<a target="_blank" rel="noopener" href="https://github.com/nullpo-head/wsl-distrod">wsl-distrod</a>”，本教程也是基于此展开。</p> 
+      <a class="article-more-link" href="/2022/04/05/poplzp-s-posts/hexo/2022/WSL2%E4%B8%8B%E4%BD%BF%E7%94%A8systemd%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/解决idea不能使用Gnome全局菜单插件Fildem的BUG"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/01/25/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3idea%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8Gnome%E5%85%A8%E5%B1%80%E8%8F%9C%E5%8D%95%E6%8F%92%E4%BB%B6Fildem%E7%9A%84BUG/" class="article-date">
+  <time datetime="2022-01-25T19:53:15.000Z" itemprop="datePublished">2022-01-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/01/25/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3idea%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8Gnome%E5%85%A8%E5%B1%80%E8%8F%9C%E5%8D%95%E6%8F%92%E4%BB%B6Fildem%E7%9A%84BUG/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="解决idea不能使用Gnome全局菜单插件Fildem的BUG"><a href="#解决idea不能使用Gnome全局菜单插件Fildem的BUG" class="headerlink" title="解决idea不能使用Gnome全局菜单插件Fildem的BUG"></a>解决idea不能使用Gnome全局菜单插件Fildem的BUG</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开始之前，我必须先发发牢骚，这真是个神奇的bug，fildem在其他软件下都很好用，唯独idea家族软件（比如clion，intellij）下就有这个bug，用着也是比较难受，刚开始我是配合idea下的一个插件<a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/plugin/7297-main-menu-toggler">Main Menu toggler</a> 打开原始顶部菜单来使用的，但是这就出现了双层菜单（话说上面的不能用就别显示啊，这样看着更加难受😭）</p> 
+      <a class="article-more-link" href="/2022/01/25/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3idea%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8Gnome%E5%85%A8%E5%B1%80%E8%8F%9C%E5%8D%95%E6%8F%92%E4%BB%B6Fildem%E7%9A%84BUG/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/联想 Yoga720-15黑苹果备忘录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/12/31/poplzp-s-posts/hexo/2021/%E8%81%94%E6%83%B3%20Yoga720-15%E9%BB%91%E8%8B%B9%E6%9E%9C%E5%A4%87%E5%BF%98%E5%BD%95/" class="article-date">
+  <time datetime="2021-12-31T11:38:11.000Z" itemprop="datePublished">2021-12-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%BB%91%E8%8B%B9%E6%9E%9C/">黑苹果</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/12/31/poplzp-s-posts/hexo/2021/%E8%81%94%E6%83%B3%20Yoga720-15%E9%BB%91%E8%8B%B9%E6%9E%9C%E5%A4%87%E5%BF%98%E5%BD%95/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="联想-Yoga720-15黑苹果备忘录"><a href="#联想-Yoga720-15黑苹果备忘录" class="headerlink" title="联想 Yoga720 15黑苹果备忘录"></a>联想 Yoga720 15黑苹果备忘录</h1><p>为了让我的电脑吃上黑苹果，我也是折腾了一两个星期，后续又修复了一些bug，现在除了一些无解和比较难解决的问题，比如独显，指纹，airdrop（需要换网卡）和雷电3之外，其他的都可以正常使用，可以认为是很完美。</p> 
+      <a class="article-more-link" href="/2021/12/31/poplzp-s-posts/hexo/2021/%E8%81%94%E6%83%B3%20Yoga720-15%E9%BB%91%E8%8B%B9%E6%9E%9C%E5%A4%87%E5%BF%98%E5%BD%95/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" rel="tag">黑苹果</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/使用archinstall安装Arch时自定义btrfs子卷的方法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/12/27/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8archinstall%E5%AE%89%E8%A3%85Arch%E6%97%B6%E8%87%AA%E5%AE%9A%E4%B9%89btrfs%E5%AD%90%E5%8D%B7%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2021-12-27T21:41:52.000Z" itemprop="datePublished">2021-12-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/12/27/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8archinstall%E5%AE%89%E8%A3%85Arch%E6%97%B6%E8%87%AA%E5%AE%9A%E4%B9%89btrfs%E5%AD%90%E5%8D%B7%E7%9A%84%E6%96%B9%E6%B3%95/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="使用archinstall安装Arch时自定义btrfs子卷的方法"><a href="#使用archinstall安装Arch时自定义btrfs子卷的方法" class="headerlink" title="使用archinstall安装Arch时自定义btrfs子卷的方法"></a>使用archinstall安装Arch时自定义btrfs子卷的方法</h1><p>Arch最新的安装镜像附带了一个简单的安装工具<code>archinstall</code>，现在还在开发和完善中，还是有一些bug，不过不是很严重，但是用这个工具安装arch的确要方便不少。我很喜欢这个工具，相比手动敲命令安装arch，这个工具用起来简直太爽了。但是美中不足的是，目前的版本选择分区时不能自定义btrfs子卷。</p>
+<p>我研究了代码后，找到了一种自定义btrfs子卷的方法，现在已经成功安装，先来展示一下</p> 
+      <a class="article-more-link" href="/2021/12/27/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8archinstall%E5%AE%89%E8%A3%85Arch%E6%97%B6%E8%87%AA%E5%AE%9A%E4%B9%89btrfs%E5%AD%90%E5%8D%B7%E7%9A%84%E6%96%B9%E6%B3%95/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/archlinux/" rel="tag">archlinux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/parallels虚拟机试用过期后重新申请14天试用"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/12/01/poplzp-s-posts/hexo/2021/parallels%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%95%E7%94%A8%E8%BF%87%E6%9C%9F%E5%90%8E%E9%87%8D%E6%96%B0%E7%94%B3%E8%AF%B714%E5%A4%A9%E8%AF%95%E7%94%A8/" class="article-date">
+  <time datetime="2021-12-01T21:41:52.000Z" itemprop="datePublished">2021-12-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/macos/">macos</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/12/01/poplzp-s-posts/hexo/2021/parallels%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%95%E7%94%A8%E8%BF%87%E6%9C%9F%E5%90%8E%E9%87%8D%E6%96%B0%E7%94%B3%E8%AF%B714%E5%A4%A9%E8%AF%95%E7%94%A8/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="parallels虚拟机试用过期后重新申请14天试用"><a href="#parallels虚拟机试用过期后重新申请14天试用" class="headerlink" title="parallels虚拟机试用过期后重新申请14天试用"></a>parallels虚拟机试用过期后重新申请14天试用</h1><p>我pd17上的win10突然不能联网了，因为这个win10虚拟机上没有什么重要文件，所以我删除了它，打算再新建一个win10虚拟机看看能不能解决问题。由于我的pd17是无限试用版，在我新建完一个新的win10虚拟机后，它提醒我试用到期了，PD Runner也不能用了。</p> 
+      <a class="article-more-link" href="/2021/12/01/poplzp-s-posts/hexo/2021/parallels%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AF%95%E7%94%A8%E8%BF%87%E6%9C%9F%E5%90%8E%E9%87%8D%E6%96%B0%E7%94%B3%E8%AF%B714%E5%A4%A9%E8%AF%95%E7%94%A8/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/" rel="tag">macos</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/Clion 插件【CC++ Single File Execution】修复cmake报错"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/11/26/poplzp-s-posts/hexo/2021/Clion%20%E6%8F%92%E4%BB%B6%E3%80%90CC++%20Single%20File%20Execution%E3%80%91%E4%BF%AE%E5%A4%8Dcmake%E6%8A%A5%E9%94%99/" class="article-date">
+  <time datetime="2021-11-26T13:49:46.000Z" itemprop="datePublished">2021-11-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Clion%E6%8F%92%E4%BB%B6/">Clion插件</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/11/26/poplzp-s-posts/hexo/2021/Clion%20%E6%8F%92%E4%BB%B6%E3%80%90CC++%20Single%20File%20Execution%E3%80%91%E4%BF%AE%E5%A4%8Dcmake%E6%8A%A5%E9%94%99/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="Clion-插件-“C-C-Single-File-Execution”-修复cmake报错"><a href="#Clion-插件-“C-C-Single-File-Execution”-修复cmake报错" class="headerlink" title="Clion 插件 “C/C++ Single File Execution” 修复cmake报错"></a>Clion 插件 “C/C++ Single File Execution” 修复cmake报错</h1><p>发现clion也有leetcode插件，终于不用苦于配置vscode的C++ debug环境了，当我在Clion上安装好leetcode插件做题时发现本地调试成了问题，不会只能提交leetcode评测吧，这样还不如在网页端打开leetcode，再用CodeRunner了</p>
+<p>我查了一下解决方案，发现有C/C++ Single File Execution这个插件，可以在 Cmakelist添加可执行文件，从而构建和运行单个 c/cpp 文件，于是我满怀期待的下载来使用，结果在使用时却报错了，如图</p> 
+      <a class="article-more-link" href="/2021/11/26/poplzp-s-posts/hexo/2021/Clion%20%E6%8F%92%E4%BB%B6%E3%80%90CC++%20Single%20File%20Execution%E3%80%91%E4%BF%AE%E5%A4%8Dcmake%E6%8A%A5%E9%94%99/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Clion%E6%8F%92%E4%BB%B6/" rel="tag">Clion插件</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/C++ rand()和srand()"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/11/23/poplzp-s-posts/hexo/2021/C++%20rand()%E5%92%8Csrand()/" class="article-date">
+  <time datetime="2021-11-23T12:18:03.000Z" itemprop="datePublished">2021-11-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a> / <a class="article-category-link" href="/categories/C/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/11/23/poplzp-s-posts/hexo/2021/C++%20rand()%E5%92%8Csrand()/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="C-rand-和srand"><a href="#C-rand-和srand" class="headerlink" title="C++ rand()和srand()"></a>C++ rand()和srand()</h1><p>rand() 的内部实现是用线性同余法做的，它不是真的随机数，因其周期特别长，故在一定的范围里可看成是随机的。</p>
+<p>rand()返回一随机数值的范围在0至RAND_MAX 间。RAND_MAX的范围最少是在32767之间(int)。用unsigned int 双字节是65535，四字节是4294967295的整数范围。0~RAND_MAX每个数字被选中的机率是相同的。这些随机数在一定范围内呈周期分布，因此rand()生成的随机数是伪随机数（当你取的随机数数量大于数值范围时就会重复出现）</p> 
+      <a class="article-more-link" href="/2021/11/23/poplzp-s-posts/hexo/2021/C++%20rand()%E5%92%8Csrand()/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/使用GitHub搭建网站过程全记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/11/23/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8GitHub%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%BF%87%E7%A8%8B%E5%85%A8%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-11-23T12:18:03.000Z" itemprop="datePublished">2021-11-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/github/">github</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/11/23/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8GitHub%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%BF%87%E7%A8%8B%E5%85%A8%E8%AE%B0%E5%BD%95/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="使用GitHub搭建网站过程记录"><a href="#使用GitHub搭建网站过程记录" class="headerlink" title="使用GitHub搭建网站过程记录"></a>使用GitHub搭建网站过程记录</h1><p>使用GitHub pages搭建个人网站、博客等等（静态）。</p>
+<p>将网站托管到GitHub，稳定性很高，不用买服务器，也不需要维护，真香！</p>
+<p>下面我对这一过程做简略总结。</p> 
+      <a class="article-more-link" href="/2021/11/23/poplzp-s-posts/hexo/2021/%E4%BD%BF%E7%94%A8GitHub%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E8%BF%87%E7%A8%8B%E5%85%A8%E8%AE%B0%E5%BD%95/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2021/双击command运行时找不到当前目录的文件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2021/11/23/poplzp-s-posts/hexo/2021/%E5%8F%8C%E5%87%BBcommand%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E7%9A%84%E6%96%87%E4%BB%B6/" class="article-date">
+  <time datetime="2021-11-23T12:18:03.000Z" itemprop="datePublished">2021-11-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/macos/">macos</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2021/11/23/poplzp-s-posts/hexo/2021/%E5%8F%8C%E5%87%BBcommand%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E7%9A%84%E6%96%87%E4%BB%B6/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="双击command运行时找不到当前目录的文件"><a href="#双击command运行时找不到当前目录的文件" class="headerlink" title="双击command运行时找不到当前目录的文件"></a>双击command运行时找不到当前目录的文件</h1><p>明明当前目录下有main.py 这个文件，新建一个command文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 main.py </span><br><span class="line">open -a /Applications/Typora.app newpost.md</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>双击运行时却提示如下（找不到main.py）</p> 
+      <a class="article-more-link" href="/2021/11/23/poplzp-s-posts/hexo/2021/%E5%8F%8C%E5%87%BBcommand%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E7%9A%84%E6%96%87%E4%BB%B6/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macos/" rel="tag">macos</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2022
+        <i class="ri-heart-fill heart_icon"></i> POPLZP
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://v1.cnzz.com/z_stat.php?id=1280598664&amp;web_id=1280598664'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://avatars.githubusercontent.com/u/59827368" alt="POPLZP 的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/1999/10/11/poplzp-s-posts/README">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://poplzp.gitee.io">镜像站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2685%202.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2686%202.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://fastly.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      $("figure").wrap('<div class="code-wrap"></div>');
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

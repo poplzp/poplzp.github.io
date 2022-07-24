@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> POPLZP 的博客</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://fastly.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="POPLZP 的博客" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <!--  -->
+
+
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/poplzp/poplzp.github.io"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img id="bg-img" src="/images/cover3.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">POPLZP 的博客</a></h1>
+      <div id="subtitle-box">
+        
+          <span id="subtitle">POPLZP&#39;s Blog</span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+
+<!-- Subtitle -->
+
+
+<script>
+  const appHeight = () => {
+    const bg = document.getElementById("bg-img");
+    bg.style.height = `${window.innerHeight}px`;
+  }
+  window.addEventListener('resize', appHeight)
+  appHeight()
+</script>
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/Linux wine使用Windows版docker"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/06/02/poplzp-s-posts/hexo/2022/Linux%20wine%E4%BD%BF%E7%94%A8Windows%E7%89%88docker/" class="article-date">
+  <time datetime="2022-06-02T21:51:53.000Z" itemprop="datePublished">2022-06-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/06/02/poplzp-s-posts/hexo/2022/Linux%20wine%E4%BD%BF%E7%94%A8Windows%E7%89%88docker/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="Linux-wine使用Windows版docker"><a href="#Linux-wine使用Windows版docker" class="headerlink" title="Linux wine使用Windows版docker"></a>Linux wine使用Windows版docker</h1><p>wine我就不多介绍了，本篇文章主要是介绍如何在wine下使用Windows版docker。原因就是有些windows app有使用docker的需求，但是在wine下运行win版docker好像很难：win版docker desktop依赖wsl2，wine是没有wsl功能的，故此方案直接放弃；旧版的DockerToolbox呢？DockerToolbox需要安装VirtualBox，这就需要在linux下用wine运行vbox，然后再用vbox创建linux虚拟机运行boot2docker……，这个方案虽然理论可行，但是感觉很不值得，这样一套下来，又是转译又是虚拟，性能不知道要损失多少，所以这个方案我就不尝试了。有没有其他更好的方案呢？我摸索了一下，发现了另一种非常好的方案。</p> 
+      <a class="article-more-link" href="/2022/06/02/poplzp-s-posts/hexo/2022/Linux%20wine%E4%BD%BF%E7%94%A8Windows%E7%89%88docker/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wine/" rel="tag">wine</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/Linux Expose docker daemon"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/06/01/poplzp-s-posts/hexo/2022/Linux%20Expose%20docker%20daemon/" class="article-date">
+  <time datetime="2022-06-01T18:33:13.000Z" itemprop="datePublished">2022-06-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/docker/">docker</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/06/01/poplzp-s-posts/hexo/2022/Linux%20Expose%20docker%20daemon/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="Linux-Expose-docker-daemon"><a href="#Linux-Expose-docker-daemon" class="headerlink" title="Linux Expose docker daemon"></a>Linux Expose docker daemon</h1><p>创建文件<code>/etc/docker/daemon.json</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;&#123;\n\t&quot;hosts&quot;: [&quot;tcp://0.0.0.0:2375&quot;, &quot;unix:///var/run/docker.sock&quot;]\n&#125;&#x27;</span> | sudo <span class="built_in">tee</span> /etc/docker/daemon.json</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2022/06/01/poplzp-s-posts/hexo/2022/Linux%20Expose%20docker%20daemon/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/centos7安装docker"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/06/01/poplzp-s-posts/hexo/2022/centos7%E5%AE%89%E8%A3%85docker/" class="article-date">
+  <time datetime="2022-06-01T18:20:38.000Z" itemprop="datePublished">2022-06-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/docker/">docker</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/06/01/poplzp-s-posts/hexo/2022/centos7%E5%AE%89%E8%A3%85docker/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="centos7安装docker"><a href="#centos7安装docker" class="headerlink" title="centos7安装docker"></a>centos7安装docker</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/centos-docker-install.html">CentOS Docker 安装 | 菜鸟教程 (runoob.com)</a></p>
+</blockquote> 
+      <a class="article-more-link" href="/2022/06/01/poplzp-s-posts/hexo/2022/centos7%E5%AE%89%E8%A3%85docker/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/docker运行nextcloud"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/30/poplzp-s-posts/hexo/2022/docker%E8%BF%90%E8%A1%8Cnextcloud/" class="article-date">
+  <time datetime="2022-04-30T20:43:57.000Z" itemprop="datePublished">2022-04-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/docker/">docker</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/30/poplzp-s-posts/hexo/2022/docker%E8%BF%90%E8%A1%8Cnextcloud/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="docker运行nextcloud"><a href="#docker运行nextcloud" class="headerlink" title="docker运行nextcloud"></a>docker运行nextcloud</h1><p>一直感觉家里每个设备之间传递文件很不方便，有时候为了从手机传一张图片到电脑，不得不在电脑上登录qq或微信；我很不喜欢电脑挂着qq或微信，原因基本上就是：1、有消息一直闪的很烦；2、不经常使用，挂在后台占用电脑内存，给电脑增加了很多负担。因此我一直想着有没有什么更好的办法解决这个问题。</p>
+<p>最终决定要解决这个问题是因为有一天我需要在手机上修改一张图片然后在电脑上用，手机改完用qq发到电脑，电脑使用后感觉效果不满意，然后又要手机修改然后再发到电脑。几次下来后觉得是时候解决一下这个问题了；想到家里还有一个闲置的平板，就有了把平板改为云盘的想法。</p> 
+      <a class="article-more-link" href="/2022/04/30/poplzp-s-posts/hexo/2022/docker%E8%BF%90%E8%A1%8Cnextcloud/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nextcloud/" rel="tag">nextcloud</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/更改Windows上cmd的默认编码为UTF-8"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/29/poplzp-s-posts/hexo/2022/%E6%9B%B4%E6%94%B9Windows%E4%B8%8Acmd%E7%9A%84%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81%E4%B8%BAUTF-8/" class="article-date">
+  <time datetime="2022-04-29T10:02:34.000Z" itemprop="datePublished">2022-04-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/windows/">windows</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/29/poplzp-s-posts/hexo/2022/%E6%9B%B4%E6%94%B9Windows%E4%B8%8Acmd%E7%9A%84%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81%E4%B8%BAUTF-8/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="更改Windows上cmd的默认编码为UTF-8"><a href="#更改Windows上cmd的默认编码为UTF-8" class="headerlink" title="更改Windows上cmd的默认编码为UTF-8"></a>更改Windows上cmd的默认编码为UTF-8</h1><p>在Windows上，大部分应用的编码格式都已经统一为utf-8，utf-8也已经是我们常用的字符编码，但是我使用cmd时，却发现cmd的编码格式还是gbk，导致cmd运行程序时经常会出现乱码，怎么修改cmd默认编码格式呢？</p> 
+      <a class="article-more-link" href="/2022/04/29/poplzp-s-posts/hexo/2022/%E6%9B%B4%E6%94%B9Windows%E4%B8%8Acmd%E7%9A%84%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81%E4%B8%BAUTF-8/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/解决Windows下python2报错LookupError unknown encoding cp65001"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/24/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3Windows%E4%B8%8Bpython2%E6%8A%A5%E9%94%99LookupError%20unknown%20encoding%20cp65001/" class="article-date">
+  <time datetime="2022-04-24T15:08:31.000Z" itemprop="datePublished">2022-04-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python2/">python2</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/24/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3Windows%E4%B8%8Bpython2%E6%8A%A5%E9%94%99LookupError%20unknown%20encoding%20cp65001/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="解决Windows下python2报错”LookupError-unknown-encoding-cp65001”"><a href="#解决Windows下python2报错”LookupError-unknown-encoding-cp65001”" class="headerlink" title="解决Windows下python2报错”LookupError: unknown encoding: cp65001”"></a>解决Windows下python2报错”LookupError: unknown encoding: cp65001”</h1><p>我是使用scoop安装的python2，版本如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python2 -V</span><br><span class="line">Python 2.7.18</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2022/04/24/poplzp-s-posts/hexo/2022/%E8%A7%A3%E5%86%B3Windows%E4%B8%8Bpython2%E6%8A%A5%E9%94%99LookupError%20unknown%20encoding%20cp65001/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python2/" rel="tag">python2</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/debian安装mysql以及一些基本的配置"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/13/poplzp-s-posts/hexo/2022/debian%E5%AE%89%E8%A3%85mysql%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2022-04-13T17:53:56.000Z" itemprop="datePublished">2022-04-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/13/poplzp-s-posts/hexo/2022/debian%E5%AE%89%E8%A3%85mysql%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="debian安装mysql以及一些基本的配置"><a href="#debian安装mysql以及一些基本的配置" class="headerlink" title="debian安装mysql以及一些基本的配置"></a>debian安装mysql以及一些基本的配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前往mysql官网，下载mysql apt源配置程序<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/apt/">MySQL :: Download MySQL APT Repository</a> ，使用<code>dkpg -i </code> 安装。然后使用<code>apt update</code> 更新源，最后使用<code>apt install mysql-server</code>安装即可。</p> 
+      <a class="article-more-link" href="/2022/04/13/poplzp-s-posts/hexo/2022/debian%E5%AE%89%E8%A3%85mysql%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/修改 WSL2 容器的位置"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BF%AE%E6%94%B9%20WSL2%20%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2022-04-05T22:31:11.000Z" itemprop="datePublished">2022-04-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl2/">wsl2</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BF%AE%E6%94%B9%20WSL2%20%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%8D%E7%BD%AE/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="修改-WSL2-容器的位置"><a href="#修改-WSL2-容器的位置" class="headerlink" title="修改 WSL2 容器的位置"></a>修改 WSL2 容器的位置</h1><p>默认情况WSL2 容器可能在C盘上，时间久了文件可以越来越大，占用很多C盘分区，于是最好把它挪到其他空间更大，更好管理的硬盘或分区上，下面介绍一种移动wsl2容器位置的方法</p> 
+      <a class="article-more-link" href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BF%AE%E6%94%B9%20WSL2%20%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%8D%E7%BD%AE/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-poplzp-s-posts/hexo/2022/使用windows计划任务实现wsl2开机自启，并且保持运行"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/" class="article-date">
+  <time datetime="2022-04-05T21:52:44.000Z" itemprop="datePublished">2022-04-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl2/">wsl2</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry  index-article-entry " 
+      
+        onclick="window.location='/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/';"
+      
+      itemprop="articleBody">
+       
+  <h1 id="使用windows计划任务实现wsl2开机自启，并且保持运行"><a href="#使用windows计划任务实现wsl2开机自启，并且保持运行" class="headerlink" title="使用windows计划任务实现wsl2开机自启，并且保持运行"></a>使用windows计划任务实现wsl2开机自启，并且保持运行</h1><p>wsl2启动速度比wsl1慢了很多，因此我过去一直都是使用wsl1，但是wsl1对docker的支持不太好，只有旧版能正常运行，参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/20ebdbf68744">WSL 中 Docker 使用总结 - 简书 (jianshu.com)</a> ，wsl2速度慢准确来说应该是启动速度慢，wsl中的发行版在一段时间不使用后就会停止，再进入wsl就会有一个启动过程，这里wsl2比wsl1要慢很多。</p> 
+      <a class="article-more-link" href="/2022/04/05/poplzp-s-posts/hexo/2022/%E4%BD%BF%E7%94%A8windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%AE%9E%E7%8E%B0wsl2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BF%9D%E6%8C%81%E8%BF%90%E8%A1%8C/"
+        >阅读更多...</a>
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2022
+        <i class="ri-heart-fill heart_icon"></i> POPLZP
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://v1.cnzz.com/z_stat.php?id=1280598664&amp;web_id=1280598664'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://avatars.githubusercontent.com/u/59827368" alt="POPLZP 的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/1999/10/11/poplzp-s-posts/README">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://poplzp.gitee.io">镜像站</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2685%202.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://fastly.jsdelivr.net/gh/poplzp/savings/imgs/IMG_2686%202.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://fastly.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://fastly.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://fastly.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      $("figure").wrap('<div class="code-wrap"></div>');
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
